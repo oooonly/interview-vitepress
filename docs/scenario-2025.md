@@ -423,7 +423,7 @@ for (var i = 0; i < chunkCount; i++) {
 通过设置 viewport 标签的 meta 属性，来控制页面的缩放比例和宽度：
 
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+`<meta name="viewport" content="width=device-width, initial-scale=1.0">`
 ```
 
 其中 width=device-width 表示设置 viewport 的宽度为设备宽度，initial-scale=1.0 表示初始缩放比例为 1。
@@ -528,7 +528,7 @@ function updateProgress(progress) {
 #### 1. 使用原生进度条
 
 ```html
-<progress id="progressBar" value="0" max="100"></progress>
+`<progress id="progressBar" value="0" max="100">`</progress>
 ```
 
 ```javascript
@@ -800,8 +800,8 @@ DNS（Domain Name System，域名系统）是因特网上用于将主机名转�
 1. **使用多个 CDN 链接**：
 
 ```javascript
-<script src="https://cdn1.example.com/script.js"></script>
-<script src="https://cdn2.example.com/script.js" onerror="this.onerror=null;this.src='https://cdn3.example.com/script.js'"></script>
+`<script src="https://cdn1.example.com/script.js">`</script>
+`<script src="https://cdn2.example.com/script.js" onerror="this.onerror=null;this.src='https://cdn3.example.com/script.js'">`</script>
 ```
 
 2. **使用备用资源路径**：
@@ -853,7 +853,7 @@ HTML 中前缀为 data- 开头的元素属性被称为**自定义数据属性（
 例如：
 
 ```html
-<div id="myDiv" data-color="red" data-size="large"></div>
+`<div id="myDiv" data-color="red" data-size="large">`</div>
 ```
 
 在 JavaScript 中获取数据属性：
@@ -1176,7 +1176,7 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(`<App />`, document.getElementById('root'));
 ```
 
 4. 在 App.js 中使用 Ant Design 的 Button 组件：
@@ -1188,9 +1188,9 @@ import { Button } from 'antd';
 
 function App() {
     return (
-        <div>
-            <h1>Hello, React!</h1>
-            <Button type="primary">Click me</Button>
+        `<div>`
+            `<h1>`Hello, React!</h1>
+            `<Button type="primary">`Click me</Button>
         </div>
     );
 }
@@ -1372,7 +1372,7 @@ function MyComponent(props) {
     }, [props.history]);
     
     return (
-        <div>组件内容</div>
+        `<div>`组件内容</div>
     );
 }
 
@@ -2020,7 +2020,7 @@ console.log(cookies);
 
 ### Scoped Styles 的工作原理
 
-1. 当为 `<style>` 标签添加 `scoped` 属性时，Vue 的加载器会处理组件文件。
+1. 当为 ``<style>`` 标签添加 `scoped` 属性时，Vue 的加载器会处理组件文件。
 2. vue-loader 使用 PostCSS 来处理 scoped 的 CSS，为组件模板内的每个元素添加一个独特的属性（如 data-v-f3f3eg9）。
 3. 所有的 CSS 规则都会被更新，以仅匹配带有相应属性选择器的元素。
 
@@ -2130,8 +2130,8 @@ function recursiveAsyncFunction(i) {
 
 在 TypeScript 项目中导入 node_modules 中定义的全局包：
 
-1. **安装包**：`npm install <package-name>`
-2. **类型声明**：确保该全局包具有类型声明，可能需要 `npm install @types/<package-name>`
+1. **安装包**：`npm install `<package-name>``
+2. **类型声明**：确保该全局包具有类型声明，可能需要 `npm install @types/`<package-name>``
 3. **导入包**：在 TypeScript 文件中使用 import 语句导入全局包
 4. **tsconfig.json 配置**：确保配置正确
 
@@ -2228,9 +2228,9 @@ class App extends React.Component {
     
     render() {
         return (
-            <div>
-                <button onClick={() => this.navigate("/page1")}>Go to Page 1</button>
-                <button onClick={() => this.navigate("/page2")}>Go to Page 2</button>
+            `<div>`
+                `<button onClick={() =>` this.navigate("/page1")}>Go to Page 1</button>
+                `<button onClick={() =>` this.navigate("/page2")}>Go to Page 2</button>
             </div>
         );
     }
@@ -2342,17 +2342,17 @@ Webpack 在打包过程中生成 hash 码主要用于缓存和版本管理。主
 ## 65. 你在开发过程中，使用过哪些 TS 的特性或者能力？
 
 1. **Utility Types（工具类型）**：
-   - Partial<T>
-   - Required<T>
-   - Readonly<T>
-   - Record<K, T>
-   - Pick<T, K>
-   - Omit<T, K>
-   - Exclude<T, U>
-   - Extract<T, U>
-   - NonNullable<T>
-   - ReturnType<T>
-   - Parameters<T>
+   - Partial`<T>`
+   - Required`<T>`
+   - Readonly`<T>`
+   - Record`<K, T>`
+   - Pick`<T, K>`
+   - Omit`<T, K>`
+   - Exclude`<T, U>`
+   - Extract`<T, U>`
+   - NonNullable`<T>`
+   - ReturnType`<T>`
+   - Parameters`<T>`
 
 2. **条件判定类型**：Conditional Types、Distribute Conditional Types
 
@@ -2377,12 +2377,12 @@ JavaScript 的加载、解析和执行默认情况下会阻塞浏览器的渲染
 
 1. **异步脚本（async）**：
    ```html
-   <script async src="script.js"></script>
+   `<script async src="script.js">`</script>
    ```
 
 2. **延迟脚本（defer）**：
    ```html
-   <script defer src="script.js"></script>
+   `<script defer src="script.js">`</script>
    ```
 
 3. **动态脚本加载**：
@@ -2406,7 +2406,7 @@ JavaScript 的加载、解析和执行默认情况下会阻塞浏览器的渲染
 4. **连接重用（Connection Reuse）**：持久连接，减少 TCP 握手开销。
 5. **资源优化**：减少资源大小，压缩、优化图片。
 6. **优先级设置**：HTTP/2 允许设置资源的加载优先级。
-7. **预加载**：使用 `<link rel="preload">` 标签预加载关键资源。
+7. **预加载**：使用 ``<link rel="preload">`` 标签预加载关键资源。
 8. **HTTP/3 和 QUIC 协议**：基于 UDP 之上的新传输层协议。
 
 ---
@@ -2416,7 +2416,7 @@ JavaScript 的加载、解析和执行默认情况下会阻塞浏览器的渲染
 ### 在 HTML 文件中直接引入
 
 ```html
-<script src="https://cdn.example.com/library.js"></script>
+`<script src="https://cdn.example.com/library.js">`</script>
 ```
 
 ### 使用 Webpack 管理
@@ -2439,7 +2439,7 @@ module.exports = {
 然后在 index.html 模板文件中引入资源：
 
 ```html
-<script src="https://cdn.example.com/library.js"></script>
+`<script src="https://cdn.example.com/library.js">`</script>
 ```
 
 ---

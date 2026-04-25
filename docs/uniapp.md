@@ -145,7 +145,7 @@ onResize – 监听窗口尺寸变化
 
     ```html
     <!-- 跳转页面 -->
-    <uni-link :url="'/pages/targetPage/targetPage?param1=' + value1 + '&param2=' + value2">跳转到目标页面</uni-link>
+    `<uni-link :url="'/pages/targetPage/targetPage?param1=' + value1 + '&param2=' + value2">`跳转到目标页面</uni-link>
     ```
 
     ```javascript

@@ -151,7 +151,7 @@ React 是一个由 Facebook 开发的 JavaScript 库，旨在构建用户界面�
 代码块
 1 // React 中声明式渲染
 2 const [count, setCount] = useState(0);
-3 return <button onClick={() => setCount(count + 1)}>{count}</button>;
+3 return `<button onClick={() =>` setCount(count + 1)}>{count}</button>;
 
 1. 组件化（Component-Based） React 的最大特点之一就是其组件化的思想。一个应用界面可以被拆分成多个独立、可重用的组件，每个组件负责 UI 的一部分和其状态的管理。组件化的好处在于代码的高复用性、可维护性和可测试性。
 
@@ -172,9 +172,9 @@ React 是一个由 Facebook 开发的 JavaScript 库，旨在构建用户界面�
 function Counter() {
 const [count, setCount] = useState(0);
 return (
-<div>
-<p>{count}</p>
-<button onClick={() => setCount(count + 1)}>Increment</button>
+`<div>`
+`<p>`{count}</p>
+`<button onClick={() =>` setCount(count + 1)}>Increment</button>
 </div>
 );
 }
@@ -197,15 +197,15 @@ return (
 ```javascript
 function Parent() {
 const [count, setCount] = useState(0);
-return <Child count={count} onIncrement={() => setCount(count + 1)} />;
+return `<Child count={count} onIncrement={() =>` setCount(count + 1)} />;
 }
 function Child({ count, onIncrement }) {
 return (
 ```
 
-7 <div>
-8 <p>{count}</p>
-9 <button onClick={onIncrement}>Increment</button>
+7 `<div>`
+8 `<p>`{count}</p>
+9 `<button onClick={onIncrement}>`Increment</button>
 10 </div>
 11 );
 12 }
@@ -251,7 +251,7 @@ fetch('https://api.example.com/data')
 .then(response => response.json())
 .then(setData);
 }, []); // 空依赖数组表示仅在组件挂载时执行一次
-return <div>{data ? JSON.stringify(data) : 'Loading...'}</div>;
+return `<div>`{data ? JSON.stringify(data) : 'Loading...'}</div>;
 }
 ```
 
@@ -375,7 +375,7 @@ JSX 的核心本质是：
 
 代码块
 ```javascript
-const element = <h1>Hello, world!</h1>;
+const element = `<h1>`Hello, world!</h1>;
 ```
 
 1. 上述 JSX 语法实际上会被编译成：
@@ -399,7 +399,7 @@ JavaScript、HTML 和 CSS，而 JSX 并不是 JavaScript 的标准语法。JSX �
 
 代码块
 1 // 这是一个 JSX 语法，浏览器无法解析
-2 const element = <div>Hello World</div>;
+2 const element = `<div>`Hello World</div>;
 
 1. 错误：浏览器会抛出语法错误，因为它没有办法理解  $ \langle div \rangle $ 和  $ \langle /div \rangle $。
 
@@ -411,7 +411,7 @@ JavaScript、HTML 和 CSS，而 JSX 并不是 JavaScript 的标准语法。JSX �
 
 代码块
 ```html
-const element = <div>Hello, world！</div>;
+const element = `<div>`Hello, world！</div>;
 ```
 
 1. 转换成：
@@ -429,7 +429,7 @@ const element = React.createElement('div', null, 'Hello, world!');
 
 ```javascript
 const name = 'John';
-const element = <h1>Hello, {name}！</h1>;
+const element = `<h1>`Hello, {name}！</h1>;
 ```
 
 1. 在这个例子中， $ \{name\} $ 是一个 JavaScript 表达式。JSX 需要将其转化为对应的 JavaScript 代码，并插入到生成的 React 元素中。
@@ -446,7 +446,7 @@ JSX 转换的基本步骤如下：
 
 代码块
 ```javascript
-const element = <h1>Hello, world!</h1>;
+const element = `<h1>`Hello, world!</h1>;
 ```
 
 1. 通过 Babel 编译：Babel 会把 JSX 转换成标准的 JavaScript。编译后的代码将会是 React.createElement 的调用，React 会通过这些调用创建 React 元素。
@@ -460,7 +460,7 @@ const element = React.createElement('h1', null, 'Hello, world!');
 
 1. React 渲染：React 根据这些 React.createElement() 调用生成的元素，更新虚拟 DOM，并最终将变化应用到真实 DOM 中。
 
-2. 例如，React 会将 h1 元素渲染为 <h1>Hello，world！</h1> 并将其插入到页面中。
+2. 例如，React 会将 h1 元素渲染为 `<h1>`Hello，world！</h1> 并将其插入到页面中。
 
 ### 四、为什么使用 JSX?
 
@@ -483,7 +483,7 @@ JSX 的本质是 JavaScript 的一种语法扩展，它使得开发者能够在 
 ## 4. React 与 Angular/Vue 的核心区别
 
 ```javascript
-<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>特性</td><td style='text-align: center; word-wrap: break-word;'>React</td><td style='text-align: center; word-wrap: break-word;'>Vue</td><td style='text-align: center; word-wrap: break-word;'>Angular</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>数据绑定</td><td style='text-align: center; word-wrap: break-word;'>单向数据流</td><td style='text-align: center; word-wrap: break-word;'>双向绑定 + 单向支持</td><td style='text-align: center; word-wrap: break-word;'>默认双向数据绑定（NgModel）</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>DOM 操作</td><td style='text-align: center; word-wrap: break-word;'>虚拟 DOM</td><td style='text-align: center; word-wrap: break-word;'>虚拟 DOM</td><td style='text-align: center; word-wrap: break-word;'>真实 DOM（通过变更检测）</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>编程范式</td><td style='text-align: center; word-wrap: break-word;'>函数式 + 声明式</td><td style='text-align: center; word-wrap: break-word;'>声明式 + 可选命令式</td><td style='text-align: center; word-wrap: break-word;'>面向对象 + 声明式模板</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>架构设计</td><td style='text-align: center; word-wrap: break-word;'>仅关注 View，其他依赖社区生态</td><td style='text-align: center; word-wrap: break-word;'>提供渐进式框架，生态集成良好</td><td style='text-align: center; word-wrap: break-word;'>全家桶（集成路由、DI、服务等）</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>模板语法</td><td style='text-align: center; word-wrap: break-word;'>JSX（更接近 JS 的语法）</td><td style='text-align: center; word-wrap: break-word;'>模板语法 + 可选JSX</td><td style='text-align: center; word-wrap: break-word;'>模板语法 + 装饰器（Decorator）</td></tr></table>
+`<table border=1 style='margin: auto; word-wrap: break-word;'>``<tr>``<td style='text-align: center; word-wrap: break-word;'>`特性</td>`<td style='text-align: center; word-wrap: break-word;'>`React</td>`<td style='text-align: center; word-wrap: break-word;'>`Vue</td>`<td style='text-align: center; word-wrap: break-word;'>`Angular</td></tr>`<tr>``<td style='text-align: center; word-wrap: break-word;'>`数据绑定</td>`<td style='text-align: center; word-wrap: break-word;'>`单向数据流</td>`<td style='text-align: center; word-wrap: break-word;'>`双向绑定 + 单向支持</td>`<td style='text-align: center; word-wrap: break-word;'>`默认双向数据绑定（NgModel）</td></tr>`<tr>``<td style='text-align: center; word-wrap: break-word;'>`DOM 操作</td>`<td style='text-align: center; word-wrap: break-word;'>`虚拟 DOM</td>`<td style='text-align: center; word-wrap: break-word;'>`虚拟 DOM</td>`<td style='text-align: center; word-wrap: break-word;'>`真实 DOM（通过变更检测）</td></tr>`<tr>``<td style='text-align: center; word-wrap: break-word;'>`编程范式</td>`<td style='text-align: center; word-wrap: break-word;'>`函数式 + 声明式</td>`<td style='text-align: center; word-wrap: break-word;'>`声明式 + 可选命令式</td>`<td style='text-align: center; word-wrap: break-word;'>`面向对象 + 声明式模板</td></tr>`<tr>``<td style='text-align: center; word-wrap: break-word;'>`架构设计</td>`<td style='text-align: center; word-wrap: break-word;'>`仅关注 View，其他依赖社区生态</td>`<td style='text-align: center; word-wrap: break-word;'>`提供渐进式框架，生态集成良好</td>`<td style='text-align: center; word-wrap: break-word;'>`全家桶（集成路由、DI、服务等）</td></tr>`<tr>``<td style='text-align: center; word-wrap: break-word;'>`模板语法</td>`<td style='text-align: center; word-wrap: break-word;'>`JSX（更接近 JS 的语法）</td>`<td style='text-align: center; word-wrap: break-word;'>`模板语法 + 可选JSX</td>`<td style='text-align: center; word-wrap: break-word;'>`模板语法 + 装饰器（Decorator）</td></tr></table>
 ```
 
 ## 5. 解释 React 的 “单向数据流” 特性及其实践意义
@@ -563,7 +563,7 @@ const handleClick = (event) => {
 // 这里的 event 是合成事件
 console.log(event); // 可以正常访问 event.target 和 event.preventDefault 等方法
 };
-return <button onClick={handleClick}>Click me</button>;
+return `<button onClick={handleClick}>`Click me</button>;
 }
 ```
 
@@ -624,7 +624,7 @@ React 的组件可以是函数组件（Functional Components）或类组件（Cl
 代码块
 ```javascript
 function Button({ label, onClick }) {
-return <button onClick={onClick}> {label}</button>;
+return `<button onClick={onClick}>` {label}</button>;
 }
 ```
 
@@ -632,8 +632,8 @@ return <button onClick={onClick}> {label}</button>;
 
 代码块
 ```javascript
-<Button label="Submit" onClick={handleSubmit} />
-<Button label="Cancel" onClick={handleCancel} />
+`<Button label="Submit" onClick={handleSubmit} />`
+`<Button label="Cancel" onClick={handleCancel} />`
 ```
 
 3. 通过这种方式，代码变得高度模块化， $ \underline{\text{Button}} $组件可以在整个应用中多次使用，而不需要为每个按钮重新编写HTML和样式，显著提升了复用性。
@@ -648,11 +648,11 @@ return <button onClick={onClick}> {label}</button>;
 ```javascript
 function List({ items }) {
 return (
-<ul>
+`<ul>`
 { items.map(item => {
 ```
 
-5 <li key={item.id}> {item.name} <li>
+5 `<li key={item.id}>` {item.name} `<li>`
 6 })
 7 </ul>
 8 );
@@ -662,8 +662,8 @@ return (
 12 const products = [ { id: 1, name: 'Laptop' }, { id: 2, name: 'Phone' }];
 13
 14 // 在不同的地方复用 List 组件
-15 <List items={users} />
-16 <List items={products} />
+15 `<List items={users} />`
+16 `<List items={products} />`
 
 6. 通过 props，同一个 List 组件可以显示不同类型的列表数据，而不需要编写多个类似的组件。
 
@@ -678,9 +678,9 @@ return (
 ```html
 function Card({ title, children }) {
 return (
-<div className="card">
-<h2>{title}</h2>
-<div className="content">{children}</div>
+`<div className="card">`
+`<h2>`{title}</h2>
+`<div className="content">`{children}</div>
 </div>
 };
 }
@@ -688,13 +688,13 @@ return (
 9
 
 10 // 使用组合
-11 <Card title="User Profile">
-12 <UserProfile />
+11 `<Card title="User Profile">`
+12 `<UserProfile />`
 13 </Card>
 14
 
-15 <Card title="Product Details">
-16 <ProductDetails />
+15 `<Card title="Product Details">`
+16 `<ProductDetails />`
 17 </Card>
 
 9. 在上述代码中， $ \underline{Card} $ 组件是通用的，而通过将  $ \underline{UserProfile} $ 和  $ \underline{ProductDetails} $ 作为子组件传递给  $ \underline{Card} $ ，实现了灵活的组合。每个部分都可以单独复用，并且组合后的 UI 可以灵活变化。
@@ -715,12 +715,12 @@ return { value, handleChange };
 6
 7     function NameForm() {
 8     const { value, handleChange } = useFormInput('');
-9     return <input type="text" value={value} onChange={handleChange} />;
+9     return `<input type="text" value={value} onChange={handleChange} />`;
 10
 11
 12     function EmailForm() {
 13         const { value, handleChange } = useFormInput('');
-14         return <input type="email" value={value} onChange={handleChange} />;
+14         return `<input type="email" value={value} onChange={handleChange} />`;
 15     }
 20
 
@@ -737,7 +737,7 @@ return { value, handleChange };
 function withLogging(Component) {
 return function WrappedComponent(props) {
 console.log('Rendering', Component.name);
-return <Component { ...props } />;
+return `<Component { ...props } />`;
 };
 }
 ```
@@ -754,7 +754,7 @@ return render(data);
 }
 ```
 5
-6 <DataProvider render={(data) => <SomeComponent data={data} /> >
+6 `<DataProvider render={(data) =>` `<SomeComponent data={data} />` >
 
 ## 15. 提升状态（Lifting State Up）：
 
@@ -767,9 +767,9 @@ return render(data);
 function ParentComponent() {
 const [value, setValue] = useState('');
 return (
-<div>
-<ChildComponent value={value} onChange={值的Value} />
-<AnotherChildComponent value={value} />
+`<div>`
+`<ChildComponent value={value} onChange={值的Value} />`
+`<AnotherChildComponent value={value} />`
 </div>
 );
 }
@@ -812,7 +812,7 @@ React 组件是构建 UI 的基本单位，而 函数组件 是用 JavaScript �
 代码块
 1 // 函数组件的例子
 2 function Welcome(props) {
-3     return <h1>Hello, {props.name}！</h1>;
+3     return `<h1>`Hello, {props.name}！</h1>;
 4 }
 
 ### 二、类组件（Class Components）的概念与特点
@@ -833,7 +833,7 @@ React 组件是构建 UI 的基本单位，而 函数组件 是用 JavaScript �
 1 // 类组件的例子
 2 class Welcome extends React.Component {
 3     render() {
-4         return <h1>Hello, {this.props.name}！</h1>;
+4         return `<h1>`Hello, {this.props.name}！</h1>;
 5 }
 6 }
 
@@ -875,7 +875,7 @@ setState 是异步的，并且会触发组件的重新渲染。
 ```javascript
 // 函数组件中使用 useState 管理状态
 const [count, setCount] = useState(0);
-return <button onClick={() => setCount(count + 1)}>{count}</button>;
+return `<button onClick={() =>` setCount(count + 1)}>{count}</button>;
 ```
 
 ## 1. 性能：
@@ -918,22 +918,22 @@ React 的 “组件即函数” 理念，意味着 React 组件可以简单地�
 
 ### 一、React 严格模式的启用方式
 
-React 的严格模式通过将整个应用或部分组件包裹在 <React.StrictMode> 组件中启用。这样，React 就会在开发过程中自动检测一些潜在的错误和问题。
+React 的严格模式通过将整个应用或部分组件包裹在 `<React.StrictMode>` 组件中启用。这样，React 就会在开发过程中自动检测一些潜在的错误和问题。
 
 代码块
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 ReactDOM.render(
-<React.StrictMode>
-<App />
+`<React.StrictMode>`
+`<App />`
 </React.StrictMode>,
 document.getElementById('root')
 );
 ```
 
 ```javascript
-<React.StrictMode> 是一个开发环境中的工具，它并不会影响生产环境的行为，因此只有在开发模式下，它才会启用相关的检查和警告。
+`<React.StrictMode>` 是一个开发环境中的工具，它并不会影响生产环境的行为，因此只有在开发模式下，它才会启用相关的检查和警告。
 ```
 
 ### 二、React 严格模式解决的潜在问题
@@ -971,7 +971,7 @@ console.log('Component mounted');
 }, []);
 ```
 5
-6     return <div>Hello World</div>;
+6     return `<div>`Hello World</div>;
 7 }
 
 在严格模式下，useEffect 会在渲染过程中执行两次，从而揭示出一些不良副作用，比如依赖外部状态、进行副作用操作等。
@@ -1003,7 +1003,7 @@ const node = ReactDOM.findDOMNode(this); // 不安全的操作
 ```html
 class MyComponent extends React.Component {
 render() {
-return <div ref="myDiv">Hello</div>; // 字符串 refs 被不推荐使用
+return `<div ref="myDiv">`Hello</div>; // 字符串 refs 被不推荐使用
 }
 }
 ```
@@ -1047,7 +1047,7 @@ const MyContext = React.createContext();
 4     static contextType = MyContext;
 5
 6     render() {
-7         return <div>{this.context}</div>;
+7         return `<div>`{this.context}</div>;
 8     }
 9 }
 
@@ -1205,22 +1205,22 @@ const items = ['apple', 'banana', 'orange');
 
 3 function FruitList() {
 4     return (
-5         <ul>
+5         `<ul>`
 6             {items.map((item, index) => (
-7                 <li key={item}> {item}</li> // 使用 item 作为 Key
+7                 `<li key={item}>` {item}</li> // 使用 item 作为 Key
 8                 }))
 9         </ul>
 10     );
 11 }
 
-在上述代码中，key={item} 确保了每个 <li> 元素的唯一标识。如果 items 数组发生了变化，React 就能够快速定位和更新相应的 li 元素，而不是重新渲染整个 ul 列表。
+在上述代码中，key={item} 确保了每个 `<li>` 元素的唯一标识。如果 items 数组发生了变化，React 就能够快速定位和更新相应的 li 元素，而不是重新渲染整个 ul 列表。
 
 错误的 Key 用法：如果使用索引值作为 Key，可能会导致问题，特别是在列表顺序发生变化时。因为 React 会认为具有相同 Key 的组件是相同的，从而无法正确地识别哪些元素需要更新。
 
 代码块
 ```javascript
 {items.map((item, index) => (
-<li key={index}> {item}<li> // 不推荐使用索引作为 Key
+`<li key={index}>` {item}`<li>` // 不推荐使用索引作为 Key
 ))}
 ```
 
@@ -1383,9 +1383,9 @@ Key 值的核心作用是唯一标识列表中的每一项，因此，Key 值必
 const items = [ { id: 1, name: 'apple' }, { id: 2, name: 'banana' }];
 function ItemList() {
     return (
-        <ul>
+        `<ul>`
             { items.map(item => {
-                <li key={item.id}>{item.name}</li>
+                `<li key={item.id}>`{item.name}</li>
                 }
             )
             </ul>
@@ -1408,9 +1408,9 @@ function ItemList() {
 ```javascript
 function ItemList() {
 return (
-<ul>
+`<ul>`
 {items.map((item, index) => (
-<li key={index}> {item.name}</li> // 使用索引作为 Key
+`<li key={index}>` {item.name}</li> // 使用索引作为 Key
 ))}
 </ul>
 );
@@ -1444,13 +1444,13 @@ const categories = [
 ```
 5 };
 6 return (
-7 <div>
+7 `<div>`
 8 {categories.map(category => (
-9 <div key={category.id}>
-10 <h3>{category.name}</h3>
-11 <ul>
+9 `<div key={category.id}>`
+10 `<h3>`{category.name}</h3>
+11 `<ul>`
 12 {category.items.map((item, index) => (
-13 <li key={item + index}>{item}</li> // 使用 item + index 组合作为
+13 `<li key={item + index}>`{item}</li> // 使用 item + index 组合作为
 14 Key
 15 }
 16 </div>
@@ -1527,7 +1527,7 @@ super(props); // 必须调用
 this.state = { count: 0 };
 }
 render() {
-return <div>{this.props.message}</div>;
+return `<div>`{this.props.message}</div>;
 }
 }
 ```
@@ -1556,7 +1556,7 @@ this.handleClick = this.handleClick.bind(this); // 绑定
 8 console.log(this); // this指向组件实例
 9 }
 10 render() {
-11 return <button onClick={this.handleClick}>Click me</button>;
+11 return `<button onClick={this.handleClick}>`Click me</button>;
 12 }
 13 }
 
@@ -1569,7 +1569,7 @@ handleClick = () => {
 console.log(this); // this指向组件实例
 };
 render() {
-return <button onClick={this.handleClick}>Click me</button>;
+return `<button onClick={this.handleClick}>`Click me</button>;
 }
 }
 ```
@@ -1581,7 +1581,7 @@ return <button onClick={this.handleClick}>Click me</button>;
 代码块
 ```html
 const MyComponent = ({ message }) => {
-return <div>{message}</div>;
+return `<div>`{message}</div>;
 };
 ```
 
@@ -1610,7 +1610,7 @@ handleClick() {
 }
 
 render() {
-    return <button onClick={this.handleClick}>Click me</button>;
+    return `<button onClick={this.handleClick}>`Click me</button>;
 }
 ```
 
@@ -1625,7 +1625,7 @@ handleClick = () => {
 console.log(this); // this指向组件实例
 };
 render() {
-return <button onClick={this.handleClick}>Click me</button>;
+return `<button onClick={this.handleClick}>`Click me</button>;
 }
 }
 ```
@@ -1638,7 +1638,7 @@ class MyComponent extends React.Component {
         console.log(this); // this指向组件实例
     };
     render() {
-        return <button onClick={this.handleClick}>Click me</button>;
+        return `<button onClick={this.handleClick}>`Click me</button>;
     }
 }
 ```
@@ -1671,16 +1671,16 @@ const handleChange = (e) => {
 setValue(e.target.value);
 };
 return (
-<input type="text" value={value} onChange={handleChange} />
+`<input type="text" value={value} onChange={handleChange} />`
 );
 }
 ```
 
 ##### 在上述例子中：
 
-- value={value}：使得 <input> 的值由组件的状态 value 控制。
+- value={value}：使得 `<input>` 的值由组件的状态 value 控制。
 
-- onChange={handleChange}：当用户在输入框中输入时，会调用 handleChange 函数，更新状态，从而触发组件重新渲染并更新 <input> 的值。
+- onChange={handleChange}：当用户在输入框中输入时，会调用 handleChange 函数，更新状态，从而触发组件重新渲染并更新 `<input>` 的值。
 
 ##### 优点：
 
@@ -1720,9 +1720,9 @@ const handleSubmit = () => {
 alert('Input value: ' + inputRef.current.value);
 };
 return (
-<div>
-<input type="text" ref={inputRef} />
-<button onClick={handleSubmit}>Submit</button>
+`<div>`
+`<input type="text" ref={inputRef} />`
+`<button onClick={handleSubmit}>`Submit</button>
 </div>
 );
 }
@@ -1731,7 +1731,7 @@ return (
 
 ##### 在上述代码中：
 
-- ref={inputRef}：为 <input> 元素创建一个引用 inputRef，React 不控制输入框的值，而是通过 inputRef.current.value 直接访问。
+- ref={inputRef}：为 `<input>` 元素创建一个引用 inputRef，React 不控制输入框的值，而是通过 inputRef.current.value 直接访问。
 
 - handleSubmit 函数通过 inputRef.current.value 获取输入框的当前值，并在点击按钮时展示。
 
@@ -1756,7 +1756,7 @@ return (
 3. 受控组件与非受控组件的区别总结
 
 ```javascript
-<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>特性</td><td style='text-align: center; word-wrap: break-word;'>受控组件</td><td style='text-align: center; word-wrap: break-word;'>非受控组件</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>数据管理</td><td style='text-align: center; word-wrap: break-word;'>数据由 React 组件的状态管理</td><td style='text-align: center; word-wrap: break-word;'>数据由 DOM 自身管理，通过 ref 访问</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>使用方式</td><td style='text-align: center; word-wrap: break-word;'>每次输入变更都会通过 onChange 更新状态</td><td style='text-align: center; word-wrap: break-word;'>使用 ref 获取输入框当前值</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>性能</td><td style='text-align: center; word-wrap: break-word;'>每次输入都会触发组件重新渲染</td><td style='text-align: center; word-wrap: break-word;'>不会频繁触发组件重新渲染</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>灵活性</td><td style='text-align: center; word-wrap: break-word;'>高，能够进行数据验证、联动等操作</td><td style='text-align: center; word-wrap: break-word;'>低，难以实现复杂功能</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>适用场景</td><td style='text-align: center; word-wrap: break-word;'>复杂表单、需要验证和联动的场景</td><td style='text-align: center; word-wrap: break-word;'>简单表单、不需要复杂交互的场景</td></tr></table>
+`<table border=1 style='margin: auto; word-wrap: break-word;'>``<tr>``<td style='text-align: center; word-wrap: break-word;'>`特性</td>`<td style='text-align: center; word-wrap: break-word;'>`受控组件</td>`<td style='text-align: center; word-wrap: break-word;'>`非受控组件</td></tr>`<tr>``<td style='text-align: center; word-wrap: break-word;'>`数据管理</td>`<td style='text-align: center; word-wrap: break-word;'>`数据由 React 组件的状态管理</td>`<td style='text-align: center; word-wrap: break-word;'>`数据由 DOM 自身管理，通过 ref 访问</td></tr>`<tr>``<td style='text-align: center; word-wrap: break-word;'>`使用方式</td>`<td style='text-align: center; word-wrap: break-word;'>`每次输入变更都会通过 onChange 更新状态</td>`<td style='text-align: center; word-wrap: break-word;'>`使用 ref 获取输入框当前值</td></tr>`<tr>``<td style='text-align: center; word-wrap: break-word;'>`性能</td>`<td style='text-align: center; word-wrap: break-word;'>`每次输入都会触发组件重新渲染</td>`<td style='text-align: center; word-wrap: break-word;'>`不会频繁触发组件重新渲染</td></tr>`<tr>``<td style='text-align: center; word-wrap: break-word;'>`灵活性</td>`<td style='text-align: center; word-wrap: break-word;'>`高，能够进行数据验证、联动等操作</td>`<td style='text-align: center; word-wrap: break-word;'>`低，难以实现复杂功能</td></tr>`<tr>``<td style='text-align: center; word-wrap: break-word;'>`适用场景</td>`<td style='text-align: center; word-wrap: break-word;'>`复杂表单、需要验证和联动的场景</td>`<td style='text-align: center; word-wrap: break-word;'>`简单表单、不需要复杂交互的场景</td></tr></table>
 ```
 
 ## 4. 何时选择受控组件与非受控组件
@@ -1784,12 +1784,12 @@ HOC 本质上是一个函数，接受一个组件作为参数，并返回一个�
 function withLoading(Component) {
 return function WithLoading(props) {
 if (props.isLoading) {
-return <div>Loading...</div>;
+return `<div>`Loading...</div>;
 }
-return <Component { ...props } />;
+return `<Component { ...props } />`;
 };
 }
-const MyComponent = ({ data }) => <div>{data}<div>;
+const MyComponent = ({ data }) => `<div>`{data}`<div>`;
 const MyComponentWithLoading = withLoading(MyComponent);
 ```
 
@@ -1822,7 +1822,7 @@ React.memo 可以用来包装一个函数组件，只要该组件的 props 没�
 const MyComponent = React.memo(function MyComponent({ value }) {
 ```
     2 console.log("Render:", value);
-    3 return <div>{value}</div>;
+    3 return `<div>`{value}</div>;
 }
 4 });
 
@@ -1841,7 +1841,7 @@ const MyComponent = React.memo(function MyComponent({ value }) {
 代码块
 ```html
 const MyComponent = React.memo(function MyComponent({ value }) {
-return <div>{value}</div>;
+return `<div>`{value}</div>;
 }, (prevProps, nextProps) => prevProps.value === nextProps.value);
 ```
 
@@ -1876,7 +1876,7 @@ class ErrorBoundary extends React.Component {
 13 }
 14 render() {
 15 if (this.state.hasError) {
-16 return <h1>Something went wrong.</h1>; // 错误发生时显示的 UI
+16 return `<h1>`Something went wrong.</h1>; // 错误发生时显示的 UI
 17 }
 18 return this.props.children;
 19 }
@@ -2017,9 +2017,9 @@ React 18 的并发模式通过以下几种方式优化了用户体验：
     6
     7   return (
 ```html
-        <div>
-            <h1>Parent Component</h1>
-            <Child message={message} />
+        `<div>`
+            `<h1>`Parent Component</h1>
+            `<Child message={message} />`
         </div>
 ```
     );
@@ -2029,7 +2029,7 @@ React 18 的并发模式通过以下几种方式优化了用户体验：
 // 子组件
 import React from 'react';
 function Child({ message }) {
-    return <p>Message from Parent: {message}</p>;
+    return `<p>`Message from Parent: {message}</p>;
 }
 export default Child;
 ```
@@ -2061,10 +2061,10 @@ React 中，子组件向父组件传递数据的方式通常是通过回调函�
 7  setMessage(msg);
 8};
 9  return (
-10    <div>
-11        <h1>Parent Component</h1>
-12        <p>Received message: {message}</p>
-13        <Child onSendMessage={handleMessage} />
+10    `<div>`
+11        `<h1>`Parent Component</h1>
+12        `<p>`Received message: {message}</p>
+13        `<Child onSendMessage={handleMessage} />`
 14        </div>
 15    );
 16  }
@@ -2081,9 +2081,9 @@ React 中，子组件向父组件传递数据的方式通常是通过回调函�
 26 onSendMessage(inputValue); // 调用父组件传递的回调函数
 27 };
 28 return (
-29 <div>
-30 <input type="text" value={inputValue} onChange={handleChange} />
-31 <button onClick={handleSubmit}>Send Message to Parent</button>
+29 `<div>`
+30 `<input type="text" value={inputValue} onChange={handleChange} />`
+31 `<button onClick={handleSubmit}>`Send Message to Parent</button>
 32 </div>
 33 };
 34 }
@@ -2127,11 +2127,11 @@ React 中，子组件向父组件传递数据的方式通常是通过回调函�
 
 9};
 10 return (
-11 <div>
-12 <h1>Parent Component</h1>
-13 <p>Shared Data: {sharedData</p>
-14 <BrotherA onUpdateData={updateSharedData} />
-15 <BrotherB sharedData={sharedData} />
+11 `<div>`
+12 `<h1>`Parent Component</h1>
+13 `<p>`Shared Data: {sharedData</p>
+14 `<BrotherA onUpdateData={updateSharedData} />`
+15 `<BrotherB sharedData={sharedData} />`
 16 </div>
 17 };
 18 }
@@ -2147,9 +2147,9 @@ React 中，子组件向父组件传递数据的方式通常是通过回调函�
 28  onUpdateData(input); // 通知父组件更新共享数据
 29 };
 30  return (
-31 <div>
-32  <input type="text" value={input} onChange={handleInputChange} />
-33  <button onClick={handleSubmit}>Send Data to Brother B</button>
+31 `<div>`
+32  `<input type="text" value={input} onChange={handleInputChange} />`
+33  `<button onClick={handleSubmit}>`Send Data to Brother B</button>
 34 </div>
 35 };
 36 }
@@ -2157,7 +2157,7 @@ React 中，子组件向父组件传递数据的方式通常是通过回调函�
 38 // 兄弟组件 B
 39 import React from 'react';
 40 function BrotherB({ sharedData }) {
-41  return <p>Received from Brother A: {sharedData</p>;
+41  return `<p>`Received from Brother A: {sharedData</p>;
 42 }
 43 export default BrotherB;
 
@@ -2191,10 +2191,10 @@ React 中，子组件向父组件传递数据的方式通常是通过回调函�
     };
 ```html
     return {
-        <DataContext.Provider value={{ sharedData, updateSharedData }}
-        <h1>Parent Component</h1>
-        <BrotherA />
-        <BrotherB />
+        `<DataContext.Provider value={{ sharedData, updateSharedData }}
+        <h1>`Parent Component</h1>
+        `<BrotherA />`
+        `<BrotherB />`
         </DataContext.Provider>
     );
 }
@@ -2209,16 +2209,16 @@ function BrotherA() {
         updateSharedData(input); // 更新共享数据
     };
     return {
-        <div>
-            <input type="text" value={input} onChange={handleInputChange} />
-            <button onClick={handleSubmit}>Send Data to Brother B</button>
+        `<div>`
+            `<input type="text" value={input} onChange={handleInputChange} />`
+            `<button onClick={handleSubmit}>`Send Data to Brother B</button>
         </div>
     );
 }
 
 function BrotherB() {
     const { sharedData } = useContext(DataContext);
-    return <p>Received from Brother A: {sharedData</p>;
+    return `<p>`Received from Brother A: {sharedData</p>;
 }
 
 export default Parent;
@@ -2267,8 +2267,8 @@ Context API 是 React 提供的一种用于跨组件共享数据的机制。通�
 const MyContext = React.createContext();
 function Parent() {
 return (
-<MyContext.Provider value="Hello from context">
-<Child />
+`<MyContext.Provider value="Hello from context">`
+`<Child />`
 ```
     );
 
@@ -2277,7 +2277,7 @@ return (
 8 }
 9 function Child() {
 10 const value = useContext(MyContext);
-11 return <div>{value}</div>;
+11 return `<div>`{value}</div>;
 12 }
 
 ##### ✓ Context API 与 Redux 的对比：
@@ -2317,9 +2317,9 @@ useState 用来在函数组件中添加本地状态，相当于类组件中的 t
 function Counter() {
     const [count, setCount] = useState(0); // 初始化状态为0
     return (
-        <div>
-            <p>{count}</p>
-            <button onClick={() => setCount(count + 1)}>Increment</button>
+        `<div>`
+            `<p>`{count}</p>
+            `<button onClick={() =>` setCount(count + 1)}>Increment</button>
         </div>
     );
 }
@@ -2351,9 +2351,9 @@ console.log('Component mounted or updated');
 10    return (
     {
 ```html
-        <div>
-        <p>{count}</p>
-        <button onClick={() => setCount(count + 1)}>Increment</button>
+        `<div>`
+        `<p>`{count}</p>
+        `<button onClick={() =>` setCount(count + 1)}>Increment</button>
     </div>
 ```
 );
@@ -2392,8 +2392,8 @@ useDocumentTitle(
 You clicked ${count} times
 );
 return (
-<div>
-<button onClick={() => setCount(count + 1)}>Increment</button>
+`<div>`
+`<button onClick={() =>` setCount(count + 1)}>Increment</button>
 </div>
 );
 }
@@ -2522,9 +2522,9 @@ import { connect } from 'react-redux';
 function MyComponent({ count, increment }) {
 return (
 ```
-    5     <div>
-    6         <p>{count}</p>
-    7         <button onClick={increment}>Increment</button>
+    5     `<div>`
+    6         `<p>`{count}</p>
+    7         `<button onClick={increment}>`Increment</button>
     8         </div>
     9     );
 10 }
@@ -2563,9 +2563,9 @@ function MyComponent() {
         dispatch({ type: 'INCREMENT' });
     };
     return (
-        <div>
-            <p>{count}</p>
-                <button onClick={increment}>Increment</button>
+        `<div>`
+            `<p>`{count}</p>
+                `<button onClick={increment}>`Increment</button>
             </div>
         );
     );
@@ -2635,10 +2635,10 @@ switch (action.type) {
 ```html
 function Counter() {
     const [state, dispatch] = useReducer(reducer, initialState);
-    return <div>
-        <p><state.count></p>
-        <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
-        <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+    return `<div>`
+        `<p>``<state.count>`</p>
+        `<button onClick={() =>` dispatch({ type: 'increment' })}>Increment</button>
+        `<button onClick={() =>` dispatch({ type: 'decrement' })}>Decrement</button>
         </div>
     </div>
 </script>
@@ -2735,13 +2735,13 @@ Redux 是最流行的状态管理库之一，提供了可预测的状态管理�
 ```html
 function TextInput({ label, value, onChange, error }) {
 return (
-<div>
-<label>{label}</label>
-<input type="text" value={value} onChange={(e) =>
+`<div>`
+`<label>`{label}</label>
+`<input type="text" value={value} onChange={(e) =>`
 ```
                      onChange(e.target.value)} />
 ```html
-{error && <div style={{ color: 'red' }}>{error}</div>}
+{error && `<div style={{ color: 'red' }}>`{error}</div>}
 ```
 7                </div>
 8         );
@@ -2762,14 +2762,14 @@ return (
 22 }
 23 };
 24 return (
-25 <form onSubmit={handleSubmit}>
-26 <TextInput
+25 `<form onSubmit={handleSubmit}>`
+26 `<TextInput
 27 label="Name"
 28 value={values.name}
 29 onChange={handleChange('name')}
 30 error={errors.name}
-31 />
-32 <button type="submit">Submit</button>
+31 />`
+32 `<button type="submit">`Submit</button>
 33 </form>
 34 };
 35 };
@@ -2795,11 +2795,11 @@ return (
 ```
     {
 ```html
-        <Suspense fallback={<div>Loading...</div>}>
+        `<Suspense fallback={<div>`Loading...</div>}>
 ```
         {
 ```javascript
-            <LazyComponent />
+            `<LazyComponent />`
 ```
         }
     }
@@ -2826,4 +2826,5 @@ return (
 ##### ✓ 注意事项：
 
 - Suspense 目前只能用于异步组件加载，尚未完全支持所有异步操作。
+
 

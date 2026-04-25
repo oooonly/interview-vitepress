@@ -88,8 +88,8 @@ function diff(oldVnode, newVnode) {
 - 需要保留状态的组件
 
 ```vue
-<keep-alive :include="['Home', 'User']" :max="10">
-  <component :is="currentComponent" />
+`<keep-alive :include="['Home', 'User']" :max="10">`
+  `<component :is="currentComponent" />`
 </keep-alive>
 ```
 
@@ -147,19 +147,19 @@ export default {
 
 ```vue
 <!-- 子组件 -->
-<template>
-  <div>
-    <slot>默认内容</slot>
-    <slot name="header"></slot>
-    <slot :user="user" name="footer"></slot>
+`<template>`
+  `<div>`
+    `<slot>`默认内容</slot>
+    `<slot name="header">`</slot>
+    `<slot :user="user" name="footer">`</slot>
   </div>
 </template>
 
 <!-- 父组件 -->
-<my-component>
-  <template #default>内容</template>
-  <template #header>头部</template>
-  <template #footer="{ user }">{{ user.name }}</template>
+`<my-component>`
+  `<template #default>`内容</template>
+  `<template #header>`头部</template>
+  `<template #footer="{ user }">`{{ user.name }}</template>
 </my-component>
 ```
 
@@ -276,7 +276,7 @@ await this.$nextTick();
 | 目的 | 构建 UI 界面 | 扩展 Vue 功能 |
 | 注册方式 | 局部或全局注册 | `Vue.use()` 安装 |
 | 功能范围 | 模板、逻辑、样式 | 添加全局方法、指令、混入等 |
-| 使用方式 | `<my-component />` | 调用全局方法或功能 |
+| 使用方式 | ``<my-component />`` | 调用全局方法或功能 |
 
 **插件示例**：
 
@@ -385,8 +385,8 @@ data() {
 
 ```html
 <!-- v-model 等价于 -->
-<input v-model="msg">
-<input :value="msg" @input="msg = $event.target.value">
+`<input v-model="msg">`
+`<input :value="msg" @input="msg = $event.target.value">`
 ```
 
 ---
@@ -403,7 +403,7 @@ data() {
 
 ```javascript
 // 模板
-<div id="app">{{ msg }}</div>
+`<div id="app">`{{ msg }}</div>
 
 // 编译后的 render 函数
 function render() {
@@ -426,14 +426,14 @@ function render() {
 **原理**：通过为组件元素添加唯一的 data 属性，CSS 选择器添加对应的属性选择器，实现样式隔离。
 
 ```vue
-<style scoped>
+`<style scoped>`
 .title { color: red; }
 </style>
 
 <!-- 编译后 -->
-<div data-v-f3f3eg9 class="title"></div>
+`<div data-v-f3f3eg9 class="title">`</div>
 
-<style>
+`<style>`
 .title[data-v-f3f3eg9] { color: red; }
 </style>
 ```
@@ -579,7 +579,7 @@ export default {
 **答：**
 
 ```vue
-<style scoped>
+`<style scoped>`
 /* Vue 2 - 深度选择器 */
 .parent /deep/ .child { }
 .parent >>> .child { }
@@ -615,17 +615,17 @@ export default {
 **编译前**：
 
 ```vue
-<style scoped>
+`<style scoped>`
 .app { color: red; }
 </style>
-<div class="app">App</div>
+`<div class="app">`App</div>
 ```
 
 **编译后**：
 
 ```html
-<div class="app" data-v-7ba5bd90>App</div>
-<style>
+`<div class="app" data-v-7ba5bd90>`App</div>
+`<style>`
 .app[data-v-7ba5bd90] { color: red; }
 </style>
 ```

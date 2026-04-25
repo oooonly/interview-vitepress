@@ -89,7 +89,7 @@
 
 **A:**
 1. **前端实现**：
-   - 使用 `<input type="file">` 选择文件。
+   - 使用 ``<input type="file">`` 选择文件。
    - 使用 `FormData` 对象包装文件对象。
    - 通过 Axios 或 Fetch 发送 `multipart/form-data` 格式的 POST 请求。
 2. **后端实现**：
@@ -109,7 +109,7 @@
 **A:**
 1. **JWT 结构**：由 `Header`（算法/类型）、`Payload`（用户信息/载荷）、`Signature`（签名）三部分组成，通过 `.` 连接。
 2. **登录流程**：用户提交用户名密码 -> 后端校验成功 -> 生成包含用户 ID 的 JWT（使用私钥签名）-> 返回给前端。
-3. **存储与发送**：前端通常将 JWT 存入 `localStorage`，后续请求在 Header 的 `Authorization: Bearer <token>` 中携带。
+3. **存储与发送**：前端通常将 JWT 存入 `localStorage`，后续请求在 Header 的 `Authorization: Bearer `<token>`` 中携带。
 4. **校验流程**：后端拦截请求 -> 提取 Token -> 使用密钥校验签名是否有效、Token 是否过期 -> 校验成功则将用户信息存入 `req.user` 并放行。
 5. **优点**：无状态、可扩展性强、支持跨域。
 

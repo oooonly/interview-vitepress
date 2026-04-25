@@ -79,7 +79,7 @@ Hooks 解决了我们五年来编写和维护成千上万的组件时遇到的�
 ```javascript
 class Welcome extends React.Component {
 render() {
-return <h1>Hello, {this.props.name}</h1>;
+return `<h1>`Hello, {this.props.name}</h1>;
 }
 }
 ```
@@ -90,7 +90,7 @@ return <h1>Hello, {this.props.name}</h1>;
 
 ```javascript
 function Welcome(props) {
-return <h1>Hello, {props.name}</h1>;
+return `<h1>`Hello, {props.name}</h1>;
 }
 ```
 
@@ -135,7 +135,7 @@ logErrorToMyService(error, errorInfo);
 render() {
 if (this.state.hasError) {
 // 你可以自定义降级后的 UI 并渲染
-return <h1>Something went wrong.</h1>;
+return `<h1>`Something went wrong.</h1>;
 }
 return this.props.children;
 }
@@ -145,8 +145,8 @@ return this.props.children;
 使用：
 
 ```javascript
-<ErrorBoundary>
-<MyWidget />
+`<ErrorBoundary>`
+`<MyWidget />`
 </ErrorBoundary>
 ```
 
@@ -222,9 +222,9 @@ Keys 是 React 用于追踪哪些列表中元素被修改、被添加或者被�
 在 React 中渲染集合时，向每个重复的元素添加关键字对于帮助React跟踪元素与数据之间的关联非常重要。key 应该是唯一ID，最好是 UUID 或收集项中的其他唯一字符串：
 
 ```javascript
-<ul>
+`<ul>`
 {todos.map((todo) =>
-<li key={todo.id}>
+`<li key={todo.id}>`
 {todo.text}
 </li>
 )};
@@ -246,11 +246,11 @@ console.log("Input Value: ", this.input.value)
 }
 render () {
 return (
-<form onSubmit={this.handleSubmit}>
-<input
+`<form onSubmit={this.handleSubmit}>`
+`<input
 type='text'
-ref={(input) => this.input = input />
-<button type='submit'>Submit</button>
+ref={(input) =>` this.input = input />
+`<button type='submit'>`Submit</button>
 </form>
 )
 }
@@ -265,11 +265,11 @@ ref={(input) => this.input = input />
 function CustomForm ({handleSubmit}) {
 let inputElement
 return (
-<form onSubmit={() => handleSubmit(inputElement.value)}>
-<input
+`<form onSubmit={() =>` handleSubmit(inputElement.value)}>
+`<input
 type='text'
-ref={(input) => inputElement = input />
-<button type='submit'>Submit</button>
+ref={(input) =>` inputElement = input />
+`<button type='submit'>`Submit</button>
 </form>
 )
 }
@@ -285,7 +285,7 @@ ref={(input) => inputElement = input />
 
 ## 21.受控组件和非受控组件有什么区别？
 
-在 HTML 文档中，许多表单元素（例如 `<input>`、`<textarea>`、`<select>`）都保持自己的状态。不受控制的组件将 DOM 视为这些输入状态的真实来源。在受控组件中，内部状态用于跟踪元素值。当输入值改变时，React 会重新渲染输入。
+在 HTML 文档中，许多表单元素（例如 ``<input>``、``<textarea>``、``<select>``）都保持自己的状态。不受控制的组件将 DOM 视为这些输入状态的真实来源。在受控组件中，内部状态用于跟踪元素值。当输入值改变时，React 会重新渲染输入。
 
 在与非 React 代码集成时，不受控制的组件非常有用（例如，如果您需要支持某种 jQuery 表单插件）。
 
@@ -355,9 +355,9 @@ user: { name: "John Doe", age: 25 },
 };
 render() {
 return (
-<ThemeContext.Provider value={this.state.theme}>
-<UserContext.Provider value={this.state.user}>
-<Toolbar />
+`<ThemeContext.Provider value={this.state.theme}>`
+`<UserContext.Provider value={this.state.user}>`
+`<Toolbar />`
 </UserContext.Provider>
 </ThemeContext.Provider>
 );
@@ -372,7 +372,7 @@ class ThemedButton extends React.Component {
 static contextType = ThemeContext;
 render() {
 const theme = this.context;
-return <Button theme={theme} />;
+return `<Button theme={theme} />`;
 }
 }
 ```
@@ -385,9 +385,9 @@ static contextType = UserContext;
 render() {
 const user = this.context;
 return (
-<div>
-<p>用户名: {user.name}</p>
-<p>年龄: {user.age}</p>
+`<div>`
+`<p>`用户名: {user.name}</p>
+`<p>`年龄: {user.age}</p>
 </div>
 );
 }
@@ -404,11 +404,11 @@ return (
 const ContextProvider = ({ children }) => {
 // 管理 context value 的状态
 const [value, setValue] = useState(/* 初始值 */);
-return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
+return `<MyContext.Provider value={value}>`{children}</MyContext.Provider>;
 };
 const ConsumerComponent = React.memo(({ contextValue }) => {
 // 仅根据 context value 进行渲染或处理逻辑
-return <div>{/* 使用 context value 的相关逻辑 */}</div>;
+return `<div>`{/* 使用 context value 的相关逻辑 */}</div>;
 });
 ```
 
@@ -452,9 +452,9 @@ import React, { useState } from "react";
 function Counter() {
 const [count, setCount] = useState(0); // 初始化状态为 0
 return (
-<div>
-<p>Count: {count}</p>
-<button onClick={() => setCount(count + 1)}>Increment</button>
+`<div>`
+`<p>`Count: {count}</p>
+`<button onClick={() =>` setCount(count + 1)}>Increment</button>
 </div>
 );
 }
@@ -492,9 +492,9 @@ user: { name: "John Doe", age: 25 },
 };
 render() {
 return (
-<ThemeContext.Provider value={this.state.theme}>
-<UserContext.Provider value={this.state.user}>
-<Toolbar />
+`<ThemeContext.Provider value={this.state.theme}>`
+`<UserContext.Provider value={this.state.user}>`
+`<Toolbar />`
 </UserContext.Provider>
 </ThemeContext.Provider>
 );
@@ -509,7 +509,7 @@ class ThemedButton extends React.Component {
 static contextType = ThemeContext;
 render() {
 const theme = this.context;
-return <Button theme={theme} />;
+return `<Button theme={theme} />`;
 }
 }
 ```
@@ -522,9 +522,9 @@ static contextType = UserContext;
 render() {
 const user = this.context;
 return (
-<div>
-<p>用户名: {user.name}</p>
-<p>年龄: {user.age}</p>
+`<div>`
+`<p>`用户名: {user.name}</p>
+`<p>`年龄: {user.age}</p>
 </div>
 );
 }
@@ -541,11 +541,11 @@ return (
 const ContextProvider = ({ children }) => {
 // 管理 context value 的状态
 const [value, setValue] = useState(/* 初始值 */);
-return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
+return `<MyContext.Provider value={value}>`{children}</MyContext.Provider>;
 };
 const ConsumerComponent = React.memo(({ contextValue }) => {
 // 仅根据 context value 进行渲染或处理逻辑
-return <div>{/* 使用 context value 的相关逻辑 */}</div>;
+return `<div>`{/* 使用 context value 的相关逻辑 */}</div>;
 });
 ```
 
@@ -647,8 +647,8 @@ const [state, dispatch] = useReducer(counterReducer, { count: 0 });
 return (
 <>
 Count: {state.count}
-<button onClick={() => dispatch({ type: "decrement" })}>-</button>
-<button onClick={() => dispatch({ type: "increment" })}>+</button>
+`<button onClick={() =>` dispatch({ type: "decrement" })}>-</button>
+`<button onClick={() =>` dispatch({ type: "increment" })}>+</button>
 </>
 );
 }
@@ -726,13 +726,13 @@ React 团队增加了新的生命周期方法，并且准备弃用某些旧的�
 
 ```javascript
 const FancyButton = React.forwardRef((props, ref) => (
-<button ref={ref} className="FancyButton">
+`<button ref={ref} className="FancyButton">`
 {props.children}
 </button>
 ));
 // 现在你可以从父组件中直接获取DOM引用
 const ref = React.createRef();
-<FancyButton ref={ref}>Click me!</FancyButton>
+`<FancyButton ref={ref}>`Click me!</FancyButton>
 ```
 
 2. **在高阶组件中转发 refs**
@@ -748,12 +748,12 @@ console.log("new props:", this.props);
 }
 render() {
 const { forwardedRef, ...rest } = this.props;
-// 将自定义的 prop 属性 "forwardedRef" 定义为 refreturn <Component ref={forwardedRef} {...rest} />;
+// 将自定义的 prop 属性 "forwardedRef" 定义为 refreturn `<Component ref={forwardedRef} {...rest} />`;
 }
 }
 // 注意: React.forwardRef 回调的第二个参数 "ref" 传递给了LogProps组件的props.forwardedRef
 return React.forwardRef((props, ref) => {
-return <LogProps {...props} forwardedRef={ref} />;
+return `<LogProps {...props} forwardedRef={ref} />`;
 });
 }
 ```
@@ -764,10 +764,10 @@ return <LogProps {...props} forwardedRef={ref} />;
 
 ```javascript
 const MyFunctionalComponent = React.forwardRef((props, ref) => {
-return <input type="text" ref={ref} />;
+return `<input type="text" ref={ref} />`;
 });
 const ref = React.createRef();
-<MyFunctionalComponent ref={ref} />
+`<MyFunctionalComponent ref={ref} />`
 ```
 
 当你需要在父组件中控制子组件中的 DOM 元素或组件实例的行为时，`forwardRef` 是非常有用的工具。不过，如果可行的话，通常最好通过状态提升或使用 context 来管理行为，只在没有其他替代的情况下才选择使用 refs。

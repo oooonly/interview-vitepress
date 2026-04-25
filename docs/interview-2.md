@@ -211,7 +211,7 @@ Web性能指标（Core Web Vitals及其他）：
 
 1. **Viewport设置**：
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+`<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">`
 ```
 
 2. **Rem适配方案**：
@@ -661,7 +661,7 @@ function myInstanceof(obj, Constructor) {
 ```wgsl
 // WGSL (WebGPU Shading Language)
 @compute @workgroup_size(64)
-fn main(@builtin(global_invocation_id) global_id: vec3<u32>) {
+fn main(@builtin(global_invocation_id) global_id: vec3`<u32>`) {
   let index = global_id.x;
   output[index] = inputA[index] + inputB[index];
 }
@@ -740,14 +740,14 @@ async function init() {
   // Shader代码
   const shaderCode = `
     @vertex
-    fn vs_main(@location(0) position: vec2<f32>,
-               @location(1) color: vec3<f32>) -> @builtin(position) vec4<f32> {
-      return vec4<f32>(position, 0.0, 1.0);
+    fn vs_main(@location(0) position: vec2`<f32>`,
+               @location(1) color: vec3`<f32>`) -> @builtin(position) vec4`<f32>` {
+      return vec4`<f32>`(position, 0.0, 1.0);
     }
 
     @fragment
-    fn fs_main() -> @location(0) vec4<f32> {
-      return vec4<f32>(1.0, 0.0, 0.0, 1.0); // 红色
+    fn fs_main() -> @location(0) vec4`<f32>` {
+      return vec4`<f32>`(1.0, 0.0, 0.0, 1.0); // 红色
     }
   `;
 

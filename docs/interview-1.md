@@ -510,7 +510,7 @@ console.log('script end');
 ```typescript
 import { ref, Ref } from 'vue';
 
-interface UseRequestOptions<T> {
+interface UseRequestOptions`<T>` {
   // 超时配置
   timeout?: number;
   // 重试配置
@@ -530,19 +530,19 @@ interface UseRequestOptions<T> {
   throttleWait?: number;
 }
 
-interface UseRequestResult<T> {
-  data: Ref<T | undefined>;
-  loading: Ref<boolean>;
-  error: Ref<Error | null>;
-  run: () => Promise<void>;
+interface UseRequestResult`<T>` {
+  data: Ref`<T | undefined>`;
+  loading: Ref`<boolean>`;
+  error: Ref`<Error | null>`;
+  run: () => Promise`<void>`;
   cancel: () => void;
-  refresh: () => Promise<void>;
+  refresh: () => Promise`<void>`;
 }
 
-function useRequest<T>(
-  service: () => Promise<T>,
-  options: UseRequestOptions<T> = {}
-): UseRequestResult<T> {
+function useRequest`<T>`(
+  service: () => Promise`<T>`,
+  options: UseRequestOptions`<T>` = {}
+): UseRequestResult`<T>` {
   const {
     timeout = 0,
     retryCount = 0,
@@ -557,9 +557,9 @@ function useRequest<T>(
     throttleWait,
   } = options;
 
-  const data = ref<T | undefined>(initialData);
+  const data = ref`<T | undefined>`(initialData);
   const loading = ref(false);
-  const error = ref<Error | null>(null);
+  const error = ref`<Error | null>`(null);
 
   let retryAttempts = 0;
   let timeoutId: number | null = null;
@@ -580,7 +580,7 @@ function useRequest<T>(
 
     try {
       // 超时处理
-      const timeoutPromise = new Promise<never>((_, reject) => {
+      const timeoutPromise = new Promise`<never>`((_, reject) => {
         if (timeout > 0) {
           timeoutId = window.setTimeout(() => {
             reject(new Error('Request timeout'));
@@ -781,7 +781,7 @@ async function searchWithTimeout(keyword, timeout = 5000) {
 
 **5. 封装为Hook**：
 ```typescript
-function useLatestRequest<T>() {
+function useLatestRequest`<T>`() {
   const latestRef = useRef<{
     requestId: number;
     abortController: AbortController | null;
@@ -790,7 +790,7 @@ function useLatestRequest<T>() {
     abortController: null
   });
 
-  const run = useCallback(async (requestFn: () => Promise<T>) => {
+  const run = useCallback(async (requestFn: () => Promise`<T>`) => {
     const currentId = ++latestRef.current.requestId;
     
     latestRef.current.abortController?.abort();
@@ -910,8 +910,8 @@ emitter.off('msg', callback);
 - 启用HTTP/2、HTTP/3
 - 使用CDN加速
 - 开启Gzip/Brotli压缩
-- DNS预解析：`<link rel="dns-prefetch" href="//cdn.example.com">`
-- 预连接：`<link rel="preconnect" href="https://api.example.com">`
+- DNS预解析：``<link rel="dns-prefetch" href="//cdn.example.com">``
+- 预连接：``<link rel="preconnect" href="https://api.example.com">``
 - 合理设置缓存策略（强缓存、协商缓存）
 
 **2. 资源优化**：
@@ -945,10 +945,10 @@ WebP是Google推出的图片格式，相比传统格式有显著优势。
 **使用方式**：
 ```html
 <!-- 使用picture标签做兼容 -->
-<picture>
-  <source srcset="image.webp" type="image/webp">
-  <source srcset="image.jpg" type="image/jpeg">
-  <img src="image.jpg" alt="描述">
+`<picture>`
+  `<source srcset="image.webp" type="image/webp">`
+  `<source srcset="image.jpg" type="image/jpeg">`
+  `<img src="image.jpg" alt="描述">`
 </picture>
 ```
 
@@ -1255,7 +1255,7 @@ function lazyLoadImagesLegacy() {
 }
 
 // 方法3：原生loading属性
-// <img src="image.jpg" loading="lazy" alt="...">
+// `<img src="image.jpg" loading="lazy" alt="...">`
 
 // 方法4：React Hook封装
 function useLazyLoad(ref, options = {}) {
@@ -1288,7 +1288,7 @@ function useLazyLoad(ref, options = {}) {
 // 使用
 // const imgRef = useRef();
 // const isLoaded = useLazyLoad(imgRef);
-// <img ref={imgRef} src={isLoaded ? 'real.jpg' : 'placeholder.jpg'} />
+// `<img ref={imgRef} src={isLoaded ? 'real.jpg' : 'placeholder.jpg'} />`
 
 // 方法5：背景图懒加载
 function lazyLoadBackground() {

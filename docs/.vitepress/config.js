@@ -4,6 +4,14 @@ export default defineConfig({
 base: '/interview-vitepress/',
 title: "前端面试宝典",
 description: "2025年前端面试题汇总",
+markdown: {
+  config: (md) => {
+    // 禁用 HTML 标签解析
+    md.set({ html: false })
+    // 禁用 Vue 插值语法 {{ }}
+    md.core.ruler.disable('interpolate')
+  }
+},
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },

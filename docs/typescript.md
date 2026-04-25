@@ -13,7 +13,7 @@
 |------|----------|------|
 | 组织方式 | 逻辑分组 | 文件级别 |
 | 导出方式 | `export` 内部 | 文件级 `export` |
-| 导入方式 | `/// <reference>` 或 `import` | `import` |
+| 导入方式 | `/// `<reference>`` 或 `import` | `import` |
 | 使用场景 | 全局库、内部组织 | 现代应用开发 |
 | 推荐度 | 不推荐（遗留方案） | 推荐 |
 
@@ -46,7 +46,7 @@
 
 ```typescript
 // 基本用法
-function identity<T>(arg: T): T {
+function identity`<T>`(arg: T): T {
   return arg;
 }
 
@@ -54,13 +54,13 @@ function identity<T>(arg: T): T {
 interface Lengthwise {
   length: number;
 }
-function loggingIdentity<T extends Lengthwise>(arg: T): T {
+function loggingIdentity`<T extends Lengthwise>`(arg: T): T {
   console.log(arg.length);
   return arg;
 }
 
 // 泛型接口
-interface GenericResponse<T> {
+interface GenericResponse`<T>` {
   data: T;
   status: number;
 }
@@ -108,7 +108,7 @@ add("a", "b");    // 返回 string
 **答：**
 
 ```typescript
-function sleep(ms: number): Promise<void> {
+function sleep(ms: number): Promise`<void>` {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -172,7 +172,7 @@ class Animal {
 **答：**
 
 ```typescript
-function myMap<T, U>(array: T[], callback: (item: T, index: number, arr: T[]) => U): U[] {
+function myMap`<T, U>`(array: T[], callback: (item: T, index: number, arr: T[]) => U): U[] {
   const result: U[] = [];
   for (let i = 0; i < array.length; i++) {
     result.push(callback(array[i], i, array));
@@ -238,7 +238,7 @@ function productSafe(nums: number[]): number | undefined {
 **答：**
 
 ```typescript
-function myAll<T>(promises: Promise<T>[]): Promise<T[]> {
+function myAll`<T>`(promises: Promise`<T>`[]): Promise`<T[]>` {
   return new Promise((resolve, reject) => {
     if (promises.length === 0) {
       resolve([]);
@@ -289,17 +289,17 @@ function sumCurry(a: number): (b: number) => number {
 
 ```typescript
 // 合并两个数组，去重
-function mergeArray<T>(arr1: T[], arr2: T[]): T[] {
+function mergeArray`<T>`(arr1: T[], arr2: T[]): T[] {
   return [...new Set([...arr1, ...arr2])];
 }
 
 // 或根据某个 key 合并对象数组
-function mergeArrayByKey<T extends Record<string, any>>(
+function mergeArrayByKey`<T extends Record<string, any>`>(
   arr1: T[], 
   arr2: T[], 
   key: keyof T
 ): T[] {
-  const map = new Map<string, T>();
+  const map = new Map`<string, T>`();
   [...arr1, ...arr2].forEach(item => {
     map.set(String(item[key]), item);
   });
@@ -316,7 +316,7 @@ function mergeArrayByKey<T extends Record<string, any>>(
 ```typescript
 // 找到字符串中第一个不重复的字符
 function firstSingleChar(str: string): string | null {
-  const charCount = new Map<string, number>();
+  const charCount = new Map`<string, number>`();
   
   // 统计字符出现次数
   for (const char of str) {
@@ -380,7 +380,7 @@ interface ObjToArrayResult {
   value: any;
 }
 
-function objToArray(obj: Record<string, any>): ObjToArrayResult[] {
+function objToArray(obj: Record`<string, any>`): ObjToArrayResult[] {
   return Object.entries(obj).map(([key, value]) => ({ key, value }));
 }
 
@@ -400,7 +400,7 @@ function isArray(value: unknown): value is any[] {
 }
 
 // 或更精确的泛型版本
-function isArrayOfType<T>(
+function isArrayOfType`<T>`(
   value: unknown, 
   typeCheck: (item: unknown) => item is T
 ): value is T[] {

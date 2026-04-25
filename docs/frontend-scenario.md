@@ -160,16 +160,16 @@ fetch('/api/track', {
 **A:**
 ```html
 <!-- HTML 结构 -->
-<nav class="sidebar">
-  <a href="#section1" class="nav-item active">第一章</a>
-  <a href="#section2" class="nav-item">第二章</a>
-  <a href="#section3" class="nav-item">第三章</a>
+`<nav class="sidebar">`
+  `<a href="#section1" class="nav-item active">`第一章</a>
+  `<a href="#section2" class="nav-item">`第二章</a>
+  `<a href="#section3" class="nav-item">`第三章</a>
 </nav>
 
-<main>
-  <section id="section1">内容 1</section>
-  <section id="section2">内容 2</section>
-  <section id="section3">内容 3</section>
+`<main>`
+  `<section id="section1">`内容 1</section>
+  `<section id="section2">`内容 2</section>
+  `<section id="section3">`内容 3</section>
 </main>
 ```
 
@@ -487,7 +487,7 @@ class PullToRefresh {
     // 创建刷新指示器
     this.indicator = document.createElement('div');
     this.indicator.className = 'pull-indicator';
-    this.indicator.innerHTML = '<span class="arrow">↓</span> 下拉刷新';
+    this.indicator.innerHTML = '`<span class="arrow">`↓</span> 下拉刷新';
     container.insertBefore(this.indicator, container.firstChild);
     
     container.addEventListener('touchstart', this.onTouchStart.bind(this), { passive: true });
@@ -516,9 +516,9 @@ class PullToRefresh {
       
       // 更新提示文字
       if (this.currentY >= this.options.threshold) {
-        this.indicator.innerHTML = '<span class="arrow">↑</span> 释放刷新';
+        this.indicator.innerHTML = '`<span class="arrow">`↑</span> 释放刷新';
       } else {
-        this.indicator.innerHTML = '<span class="arrow">↓</span> 下拉刷新';
+        this.indicator.innerHTML = '`<span class="arrow">`↓</span> 下拉刷新';
       }
     }
   }
@@ -536,7 +536,7 @@ class PullToRefresh {
   
   async refresh() {
     this.refreshing = true;
-    this.indicator.innerHTML = '<span class="spinner">⟳</span> 加载中...';
+    this.indicator.innerHTML = '`<span class="spinner">`⟳</span> 加载中...';
     
     // 动画到最大高度
     this.indicator.style.transform = `translateY(${this.options.threshold}px)`;
@@ -1070,11 +1070,11 @@ function getPVRequestStats() {
 **A:**
 ```html
 <!-- HTML 结构 -->
-<div class="text-expand" data-expanded="false">
-  <div class="text-content">
+`<div class="text-expand" data-expanded="false">`
+  `<div class="text-content">`
     这里是很长的文本内容...
   </div>
-  <button class="expand-btn">展开</button>
+  `<button class="expand-btn">`展开</button>
 </div>
 ```
 
@@ -1227,7 +1227,7 @@ new TextExpander('.text-expand', { lines: 3 });
 
 **A:**
 ```html
-<div id="draggable" class="draggable">拖拽我</div>
+`<div id="draggable" class="draggable">`拖拽我</div>
 ```
 
 ```css
@@ -1573,7 +1573,7 @@ class ResourceInterceptor {
   }
   
   interceptLink() {
-    // 可以类似拦截<link>、<script>等
+    // 可以类似拦截`<link>`、`<script>`等
   }
 }
 
@@ -2256,13 +2256,13 @@ git diff v1.0.0 v1.1.0 --stat
 **方法 1：git revert（推荐，安全）**
 ```bash
 # 创建一个新的 commit 来撤销指定 commit
-git revert <commit-hash>
+git revert `<commit-hash>`
 
 # 撤销多个连续 commit
 git revert HEAD~2..HEAD
 
 # 撤销时不自动提交（可修改）
-git revert -n <commit-hash>
+git revert -n `<commit-hash>`
 git commit -m "撤销 xxx 提交"
 
 # 优点：
@@ -2275,22 +2275,22 @@ git commit -m "撤销 xxx 提交"
 **方法 2：git reset（强制重置，危险）**
 ```bash
 # 软重置：保留更改在暂存区
-git reset --soft <commit-hash>
+git reset --soft `<commit-hash>`
 
 # 混合重置（默认）：保留更改在工作区
-git reset --mixed <commit-hash>
+git reset --mixed `<commit-hash>`
 
 # 硬重置：丢弃所有更改
-git reset --hard <commit-hash>
+git reset --hard `<commit-hash>`
 
 # 回退到上一个 commit
 git reset --hard HEAD~1
 
 # ⚠️ 注意：如果已推送到远程，需要强制推送
-git push origin <branch-name> --force
+git push origin `<branch-name>` --force
 
 # 更安全的强制推送（如果远程有其他人提交会失败）
-git push origin <branch-name> --force-with-lease
+git push origin `<branch-name>` --force-with-lease
 ```
 
 ```javascript
@@ -2321,7 +2321,7 @@ drop: 删除
 # 保存退出后，Git 会重新组织 commit 历史
 
 # 如果已推送到远程
-git push origin <branch-name> --force-with-lease
+git push origin `<branch-name>` --force-with-lease
 ```
 
 ```javascript
@@ -2341,7 +2341,7 @@ git push origin <branch-name> --force-with-lease
 git branch backup-branch
 
 # 2. 使用 revert 撤销公开 commit
-git revert <commit-hash>
+git revert `<commit-hash>`
 
 # 3. 如果一定要修改历史（仅限本地或未同步分支）
 git rebase -i HEAD~5
@@ -2381,3 +2381,4 @@ git reset --hard HEAD@{5}
 
 **Q21 移除commit：** `git revert`（推荐，生成新commit）、`git reset --hard`（强制重置）、`git rebase -i`（交互式变基）
 ```
+

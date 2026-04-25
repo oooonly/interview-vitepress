@@ -1,6 +1,4 @@
-### 前端项目难点亮点
-
-## 1. 如何防止重复提交
+### 前端项目难点亮点\n\n> 原文链接：backup/project-difficulty.md\n\n## 1. 如何防止重复提交
 
 一般使用的是防抖和节流，节流函数通过控制每次时间执行的时间间隔，控制短时间多次执行方法。防抖函数是推迟每次事件执行的时间减少不必要的查询。但是网络慢的时候，还是会重复提交，没有显示状态，用户不知道有没有真的提交。所以就给按钮添加一个加载状态，查了发现el-button自带了loading属性，传参的时候传一个submit函数，是一个Promise,promise状态改变的时候把loading状态改成false。然后点击按钮会有加载动画，加载的时候，按钮是禁用的。
 
@@ -72,17 +70,17 @@ Storage存储在浏览器端不参与和服务器的通信，本身有api,localS
 断网时会更新vue中network的状态，根据network状态判断是否需要加载断网组件，断网情况就加载断网组件，不加载对应页面组件，点击刷新，就跳转refresh页面然后立刻返回来实现重新获取数据，所以新建refresh.vue，在beforeRouteEnter钩子种返回当前页面。
 
 ```vue
-<template>
-    <div id="app">
-        <div v-if="!network">
-            <h3>我没网了</h3>
-            <div @click="onRefresh">刷新</div>
+`<template>`
+    `<div id="app">`
+        `<div v-if="!network">`
+            `<h3>`我没网了</h3>
+            `<div @click="onRefresh">`刷新</div>
         </div>
-        <router-view/>
+        `<router-view/>`
     </div>
 </template>
 
-<script>
+`<script>`
     import { mapState } from 'vuex';
     export default {
         name: 'App',
@@ -110,7 +108,7 @@ beforeRouteEnter(to, from, next) {
 
 ## 9.scoped时修改子组件样式
 
-vue文件正常样式写在</script>中，会被自动加上一个[data-v-xxxx]属性，但是第三方组件内部标签没有编译为这个属性，所以不能修改这个第三方组件。为了父组件不影响子组件，用scoped,有一个方法是给第三方组件写class,然后在公共css或者当前页面写一个没有scoped的style,直接在里面修改第三方组件的样式，但是存在全局污染和命名冲突，约定的那个特殊的命名方式可以避免命名冲突。查找资料发现可以用深度选择器解决。深度选择器用/deep/，用到ElementUI,又有预处理器就可以用...:v-deep。vue中过多使用scoped导致页面打包文件体积增大。通常能写在index中的样式尽量写在index中，我们可以通过在index样式中通过外层组件添加唯一class来区分组件+第三方样式 来实现了类似于scoped的效果，又方便修改各种第三方组件的样式。
+vue文件正常样式写在 `</script>` 中，会被自动加上一个[data-v-xxxx]属性，但是第三方组件内部标签没有编译为这个属性，所以不能修改这个第三方组件。为了父组件不影响子组件，用scoped,有一个方法是给第三方组件写class,然后在公共css或者当前页面写一个没有scoped的style,直接在里面修改第三方组件的样式，但是存在全局污染和命名冲突，约定的那个特殊的命名方式可以避免命名冲突。查找资料发现可以用深度选择器解决。深度选择器用/deep/，用到ElementUI,又有预处理器就可以用...:v-deep。vue中过多使用scoped导致页面打包文件体积增大。通常能写在index中的样式尽量写在index中，我们可以通过在index样式中通过外层组件添加唯一class来区分组件+第三方样式 来实现了类似于scoped的效果，又方便修改各种第三方组件的样式。
 
 ## 10. 跳转页面后停止定时器
 

@@ -86,7 +86,7 @@ DOM 树是 HTML 文档的内存中表示，特点包括：
 ## 8. HTML 和 CSS 中的图片加载与渲染规则是什么样的？
 
 **答：**
-- 浏览器遇到 `<img>` 标签会立即发送请求加载图片
+- 浏览器遇到 ``<img>`` 标签会立即发送请求加载图片
 - 图片加载是异步的，不会阻塞 HTML 解析
 - 但图片加载完成后的渲染可能会触发重排
 - CSS 背景图片在元素渲染时才会加载
@@ -112,11 +112,11 @@ DOM 树是 HTML 文档的内存中表示，特点包括：
 ## 10. script 标签为什么建议放在 body 标签的底部（defer、async）
 
 **答：**
-- 浏览器解析 HTML 遇到 `<script>` 时会阻塞解析，等待脚本下载和执行
+- 浏览器解析 HTML 遇到 ``<script>`` 时会阻塞解析，等待脚本下载和执行
 - 放在底部可以确保 DOM 先解析完成，避免阻塞渲染
 - **defer**：脚本延迟到 DOM 解析完成后执行，按顺序执行
 - **async**：脚本下载不阻塞解析，但下载完成后立即执行，不保证顺序
-- 使用 `defer` 可以放在 `<head>` 中，也能达到类似效果
+- 使用 `defer` 可以放在 ``<head>`` 中，也能达到类似效果
 
 ---
 
@@ -187,10 +187,10 @@ DOM 树是 HTML 文档的内存中表示，特点包括：
 **答：**
 ```html
 <!-- HTML5 原生属性 -->
-<input type="text" maxlength="100" />
+`<input type="text" maxlength="100" />`
 
 <!-- JavaScript 控制 -->
-<input type="text" oninput="if(this.value.length > 100) this.value = this.value.slice(0, 100)" />
+`<input type="text" oninput="if(this.value.length >` 100) this.value = this.value.slice(0, 100)" />
 ```
 
 ---

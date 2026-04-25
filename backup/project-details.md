@@ -1,4 +1,4 @@
-## 2025 年前端开发项目细节及疑难点
+## 2025 年前端开发项目细节及疑难点\n\n> 原文链接：backup/project-details.md
 
 ## 1. 获取首页链接里面的参数问题。
 
@@ -104,7 +104,7 @@ const decodedParam = decodeURIComponent(encodedParam);
 确保动态路由配置正确，并避免冲突的路由路径。
 
 ```javascript
-<Route path="/user/:/id" component={UserComponent} />
+`<Route path="/user/:/id" component={UserComponent} />`
 ```
 
 ## 7. 跨组件传参
@@ -720,7 +720,7 @@ module.hot.accept();
 
 ## 20. 在使用 qiankun 时，你如何处理 js 沙箱不能解决的 js 污染问题？
 
-qiankun 的 js 沙箱机制主要是通过代理 window 对象来实现的，它可以有效地隔离子应用的全局变量，防止子应用之间的全局变量污染。然而，这种机制并不能解决所有的 js 污染问题。例如，如果我们使用 onclick 或 addEventListener 给 <body> 添加了一个点击事件，js 沙箱并不能消除它的影响。
+qiankun 的 js 沙箱机制主要是通过代理 window 对象来实现的，它可以有效地隔离子应用的全局变量，防止子应用之间的全局变量污染。然而，这种机制并不能解决所有的 js 污染问题。例如，如果我们使用 onclick 或 addEventListener 给 `<body>` 添加了一个点击事件，js 沙箱并不能消除它的影响。
 
 对于这种情况，我们需要依赖于良好的代码规范和开发者的自觉。在开发子应用时，我们需要避免直接操作全局对象，如 window 和 document。如果必须要操作，我们应该在子应用卸载时，清理掉这些全局事件和全局变量，以防止对其他子应用或主应用造成影响。
 
@@ -816,7 +816,7 @@ flex布局+外边距（margin）实现：给父级设置为display:flex；布局
 
 ### b. 预加载
 
-- 使用<link rel="preload">或<link rel="prefetch">标签预加载关键资源。
+- 使用`<link rel="preload">`或`<link rel="prefetch">`标签预加载关键资源。
 
 - 使用webpack的preload和prefetch插件优化资源加载。
 
@@ -845,7 +845,7 @@ flex布局+外边距（margin）实现：给父级设置为display:flex；布局
 ## 1. CSS关键路径提取
 
 ```javascript
-<style>
+`<style>`
 /* Critical CSS */
 ```
 body {
@@ -857,7 +857,7 @@ body {
 }
 ```javascript
 </style>
-<link rel="stylesheet" href="styles.css">
+`<link rel="stylesheet" href="styles.css">`
 ```
 
 ## 2. 动态import JavaScript
@@ -872,17 +872,17 @@ import (* webpackChunkName: "async-module" */ './async-module').then(module =>
 ## 3. 骨架屏
 
 ```vue
-<div id="app">
-    <div class="skeleton">
-        <div class="skeleton-header"></div>
+`<div id="app">`
+    `<div class="skeleton">`
+        `<div class="skeleton-header">`</div>
     </div>
 </div>
 
-<div class="skeleton-content"></div>
+`<div class="skeleton-content">`</div>
 </div>
 </div>
 
-<script>
+`<script>`
 // Replace skeleton screen with real content once loaded
 window.onload = function() {
     document.querySelector('.skeleton').style.display = 'none';
@@ -894,8 +894,8 @@ window.onload = function() {
 ## 4. 预加载关键资源
 
 ```javascript
-<link rel="preload" href="main.js" as="script">
-<link rel="preload" href="styles.css" as="style">
+`<link rel="preload" href="main.js" as="script">`
+`<link rel="preload" href="styles.css" as="style">`
 ```
 
 通过结合这些技术和策略，可以有效地优化首屏加载性能，减少白屏时间，提升用户体验。
@@ -1178,7 +1178,7 @@ start 函数接收一个可选的配置对象作为参数，这个对象可以�
 
 ## 51. vue组件动态加载的坑
 
-由于首页的排版不确定，然后想着，让组件动态显示，根据后端传入的数据，传入那个组件的数据，就显示那个组件。解决办法：和后端商量好，做个标识。前端根据标识判断，动态显示组件。 使用到了vue中的<component:is=""></component>，刚开始想着是不是和原生js一样使用append直接可以插入进入呢，但是后来发现根本不可以，思路是可以的，但是实现起来是行不通的。因为append后面插入的必须是个节点，而不是组件。后来就去查阅vue文档。
+由于首页的排版不确定，然后想着，让组件动态显示，根据后端传入的数据，传入那个组件的数据，就显示那个组件。解决办法：和后端商量好，做个标识。前端根据标识判断，动态显示组件。 使用到了vue中的`<component:is="">`</component>，刚开始想着是不是和原生js一样使用append直接可以插入进入呢，但是后来发现根本不可以，思路是可以的，但是实现起来是行不通的。因为append后面插入的必须是个节点，而不是组件。后来就去查阅vue文档。
 
 但是现在还有个问题，首页是通过动态组件添加的，数据得从后端接口返回，但是接口请求也是需要时间，所以，刚开始进入页面的是，页面先会是空白，但是这样的体验并不友好，会让用户感觉到页
 
@@ -1299,7 +1299,7 @@ json，返回给小程序，小程序调支付窗口。
 
 ## 68. 如何自定义tabbar?
 
-创建一个compent文件夹，里面创建一个tabbar页面，取消原有的tabbar页面。需要在app.json中输入compent:ture，在自定义的pages页面中写入<tabbar selected="{{0}}}></tabbar>进行选中效果显示
+创建一个compent文件夹，里面创建一个tabbar页面，取消原有的tabbar页面。需要在app.json中输入compent:ture，在自定义的pages页面中写入`<tabbar selected="{{0}}}>`</tabbar>进行选中效果显示
 
 ## 69. 你刚才提到了异步，在这个项目中你是否被异步坑过，最后又是如何解决的？
 
@@ -1407,7 +1407,7 @@ SSR服务端渲染，这个方案可以让页面直接在服务端渲染，但�
 
 ## 3. (封装自定义组件)
 
-在一个小程序项目需求中，要求页面头部tab栏切换的同时，对应tab栏品类的页面也要展示出来。你可能会觉得这个需求用个taroUI组件库中的tabs标签页组件不就可以完成吗？但是这个需求想满足用户的沉浸式体验，切换页面时需要有独特丝滑的专场特效。所以当时面临的问题就是，使用的UI库的组件默认样式生硬，满足不了需求。我当时是对小程序原生swiper组件进行了二次封装，主要实现了几点自定义需求：头部Tab栏品类样式使用flex动态布局，实现品类数量可变；使用slot插槽来动态渲染Tab区块中的内容，配合原生swiper组件使用定义插槽；小程序原生组件<swiper>是有默认高度的，必须手动设置其高度，这里使用wx.getSystemInfo来动态获取屏幕尺寸。自己封装组件，踩了不少坑，但从中我学习到了：使用小程序的原生组件，并修改其默认的样式；学会使用slot插槽，实现组件内容的差异化；学会了使用小程序原生api获取手机信息，用js改变组件样式等等
+在一个小程序项目需求中，要求页面头部tab栏切换的同时，对应tab栏品类的页面也要展示出来。你可能会觉得这个需求用个taroUI组件库中的tabs标签页组件不就可以完成吗？但是这个需求想满足用户的沉浸式体验，切换页面时需要有独特丝滑的专场特效。所以当时面临的问题就是，使用的UI库的组件默认样式生硬，满足不了需求。我当时是对小程序原生swiper组件进行了二次封装，主要实现了几点自定义需求：头部Tab栏品类样式使用flex动态布局，实现品类数量可变；使用slot插槽来动态渲染Tab区块中的内容，配合原生swiper组件使用定义插槽；小程序原生组件`<swiper>`是有默认高度的，必须手动设置其高度，这里使用wx.getSystemInfo来动态获取屏幕尺寸。自己封装组件，踩了不少坑，但从中我学习到了：使用小程序的原生组件，并修改其默认的样式；学会使用slot插槽，实现组件内容的差异化；学会了使用小程序原生api获取手机信息，用js改变组件样式等等
 
 ## 4. （遇到了难用的轮子）
 
@@ -2113,4 +2113,5 @@ pushState() 需要三个参数: 一个状态对象, 一个标题 (目前已忽�
 ##### 总结
 
 基于H5 history可以实现很多优雅使用的工具，比如路由，缓存控件等等。
+
 

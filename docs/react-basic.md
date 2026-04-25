@@ -165,9 +165,9 @@ const syntheticEvent = {
 
 3. **事件冒泡与捕获**：
 ```jsx
-<div onClickCapture={() => console.log('capture')} 
+`<div onClickCapture={() =>` console.log('capture')} 
      onClick={() => console.log('bubble')}>
-  <button onClick={() => console.log('button')}>
+  `<button onClick={() =>` console.log('button')}>
     Click
   </button>
 </div>
@@ -189,11 +189,11 @@ const syntheticEvent = {
 // 原生事件阻止冒泡
 document.addEventListener('click', () => console.log('document'));
 
-<div onClick={(e) => {
+`<div onClick={(e) =>` {
   e.stopPropagation(); // 只阻止 React 合成事件的冒泡
   // 原生 document 的 click 事件仍会触发
 }}>
-  <button>Click</button>
+  `<button>`Click</button>
 </div>
 
 // 需要同时阻止原生冒泡
@@ -389,9 +389,9 @@ const UserContext = createContext(null);
 // 2. Provider 提供数据
 function App() {
   return (
-    <ThemeContext.Provider value="dark">
-      <UserContext.Provider value={{ name: 'Tom' }}>
-        <Child />
+    `<ThemeContext.Provider value="dark">`
+      `<UserContext.Provider value={{ name: 'Tom' }}>`
+        `<Child />`
       </UserContext.Provider>
     </ThemeContext.Provider>
   );
@@ -403,7 +403,7 @@ function Child() {
   const user = useContext(UserContext);
   
   return (
-    <div className={theme}>
+    `<div className={theme}>`
       Hello, {user.name}
     </div>
   );
@@ -418,11 +418,11 @@ function Child() {
 // 避免在 Provider 中传递动态创建的对象
 function App() {
   // ❌ 每次渲染都创建新对象，导致所有消费者重渲染
-  return <UserContext.Provider value={{ name: 'Tom' }}>;
+  return `<UserContext.Provider value={{ name: 'Tom' }}>`;
   
   // ✅ 使用 useMemo 缓存
   const value = useMemo(() => ({ name: 'Tom' }), []);
-  return <UserContext.Provider value={value}>;
+  return `<UserContext.Provider value={value}>`;
 }
 ```
 
@@ -457,8 +457,8 @@ function Provider({ children }) {
   const [state, dispatch] = useReducer(reducer, { count: 0 });
   
   return (
-    <StateContext.Provider value={state}>
-      <DispatchContext.Provider value={dispatch}>
+    `<StateContext.Provider value={state}>`
+      `<DispatchContext.Provider value={dispatch}>`
         {children}
       </DispatchContext.Provider>
     </StateContext.Provider>
@@ -498,7 +498,7 @@ function TodoList({ items, filter }) {
     return items.filter(item => item.includes(filter));
   }, [items, filter]);
   
-  return <ul>{filteredItems.map(item => <li key={item}>{item}</li>)}</ul>;
+  return `<ul>`{filteredItems.map(item => `<li key={item}>`{item}</li>)}</ul>;
 }
 ```
 
@@ -510,12 +510,12 @@ function Parent({ items }) {
     return [...items].sort((a, b) => a - b);
   }, [items]);
   
-  return <Child items={sortedItems} />;
+  return `<Child items={sortedItems} />`;
 }
 
 // 子组件使用 React.memo 时，只有 props 变化才重渲染
 const Child = React.memo(({ items }) => {
-  return <div>{items.length}</div>;
+  return `<div>`{items.length}</div>;
 });
 ```
 
@@ -524,10 +524,10 @@ const Child = React.memo(({ items }) => {
 function List({ items }) {
   // 缓存渲染结果（较少用，通常直接渲染即可）
   const renderedList = useMemo(() => {
-    return items.map(item => <Item key={item.id} item={item} />);
+    return items.map(item => `<Item key={item.id} item={item} />`);
   }, [items]);
   
-  return <div>{renderedList}</div>;
+  return `<div>`{renderedList}</div>;
 }
 ```
 
@@ -601,9 +601,9 @@ function useFetch(url) {
 // 使用
 function UserList() {
   const { data, loading, error } = useFetch('/api/users');
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  return <ul>{data.map(user => <li key={user.id}>{user.name}</li>)}</ul>;
+  if (loading) return `<div>`Loading...</div>;
+  if (error) return `<div>`Error: {error.message}</div>;
+  return `<ul>`{data.map(user => `<li key={user.id}>`{user.name}</li>)}</ul>;
 }
 ```
 
@@ -630,10 +630,10 @@ function LoginForm() {
   });
   
   return (
-    <form>
-      <input name="username" value={values.username} onChange={handleChange} />
-      <input name="password" type="password" value={values.password} onChange={handleChange} />
-      <button type="button" onClick={reset}>重置</button>
+    `<form>`
+      `<input name="username" value={values.username} onChange={handleChange} />`
+      `<input name="password" type="password" value={values.password} onChange={handleChange} />`
+      `<button type="button" onClick={reset}>`重置</button>
     </form>
   );
 }
@@ -817,20 +817,20 @@ useEffect(() => {
 
 // 传递给 memo 组件
 const itemProps = useMemo(() => ({ data, onClick }), [data, onClick]);
-return <MemoItem {...itemProps} />;
+return `<MemoItem {...itemProps} />`;
 ```
 
 3. **避免子组件不必要的渲染**：
 ```javascript
 const items = useMemo(() => transform(rawItems), [rawItems]);
-return <ExpensiveList items={items} />;
+return `<ExpensiveList items={items} />`;
 ```
 
 **useCallback 使用场景**：
 
 1. **传递给 memo 组件的回调**：
 ```javascript
-const MemoChild = React.memo(({ onClick }) => <button onClick={onClick}>Click</button>);
+const MemoChild = React.memo(({ onClick }) => `<button onClick={onClick}>`Click</button>);
 
 function Parent() {
   const [count, setCount] = useState(0);
@@ -843,7 +843,7 @@ function Parent() {
     console.log(count);
   }, [count]);
   
-  return <MemoChild onClick={handleClick} />;
+  return `<MemoChild onClick={handleClick} />`;
 }
 ```
 
@@ -907,7 +907,7 @@ function Counter() {
     return () => clearInterval(timer);
   }, []); // 空依赖，只在挂载时执行一次
   
-  return <div>{count}</div>;
+  return `<div>`{count}</div>;
 }
 ```
 
@@ -1043,7 +1043,7 @@ function SearchResults({ query }) {
     return filterLargeList(deferredQuery);
   }, [deferredQuery]);
   
-  return <ResultList results={results} />;
+  return `<ResultList results={results} />`;
 }
 ```
 
@@ -1055,8 +1055,8 @@ function Form() {
   const id = useId();
   return (
     <>
-      <label htmlFor={id}>Name</label>
-      <input id={id} />
+      `<label htmlFor={id}>`Name</label>
+      `<input id={id} />`
     </>
   );
 }
@@ -1080,14 +1080,14 @@ const stores = useSyncExternalStore(
 import { Suspense } from 'react';
 
 // 支持服务端渲染
-<Suspense fallback={<Loading />}>
-  <Comments />
+`<Suspense fallback={<Loading />`}>
+  `<Comments />`
 </Suspense>
 
 // 配合 use 使用
 function Note({id}) {
   const note = use(fetchNote(id)); // 等待 Promise resolve
-  return <div>{note.title}</div>;
+  return `<div>`{note.title}</div>;
 }
 ```
 
@@ -1096,12 +1096,12 @@ function Note({id}) {
 ```javascript
 // React 17
 import { render } from 'react-dom';
-render(<App />, document.getElementById('root'));
+render(`<App />`, document.getElementById('root'));
 
 // React 18
 import { createRoot } from 'react-dom/client';
 const root = createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(`<App />`);
 
 // 卸载
 root.unmount();
@@ -1134,7 +1134,7 @@ const Child = forwardRef((props, ref) => {
     reset: () => setCount(0)
   }));
   
-  return <div>Count: {count}</div>;
+  return `<div>`Count: {count}</div>;
 });
 
 // 父组件
@@ -1148,8 +1148,8 @@ function Parent() {
   
   return (
     <>
-      <Child ref={childRef} />
-      <button onClick={handleClick}>调用子组件方法</button>
+      `<Child ref={childRef} />`
+      `<button onClick={handleClick}>`调用子组件方法</button>
     </>
   );
 }
@@ -1170,7 +1170,7 @@ function Child({ onMount }) {
     });
   }, []);
   
-  return <div>Count: {count}</div>;
+  return `<div>`Count: {count}</div>;
 }
 
 // 父组件
@@ -1179,8 +1179,8 @@ function Parent() {
   
   return (
     <>
-      <Child onMount={setChildApi} />
-      <button onClick={() => childApi?.increment()}>调用</button>
+      `<Child onMount={setChildApi} />`
+      `<button onClick={() =>` childApi?.increment()}>调用</button>
     </>
   );
 }
@@ -1196,9 +1196,9 @@ function Parent() {
   const [childApi, setChildApi] = useState(null);
   
   return (
-    <ChildApiContext.Provider value={setChildApi}>
-      <Child />
-      <button onClick={() => childApi?.increment()}>调用</button>
+    `<ChildApiContext.Provider value={setChildApi}>`
+      `<Child />`
+      `<button onClick={() =>` childApi?.increment()}>调用</button>
     </ChildApiContext.Provider>
   );
 }
@@ -1363,19 +1363,19 @@ function TodoList() {
   
   return (
     <>
-      <button onClick={() => dispatch({ type: 'add', text: 'New todo' })}>
+      `<button onClick={() =>` dispatch({ type: 'add', text: 'New todo' })}>
         添加
       </button>
-      <ul>
+      `<ul>`
         {todos.map(todo => (
-          <li key={todo.id}>
-            <span
+          `<li key={todo.id}>`
+            `<span
               style={{ textDecoration: todo.done ? 'line-through' : 'none' }}
-              onClick={() => dispatch({ type: 'toggle', id: todo.id })}
+              onClick={() =>` dispatch({ type: 'toggle', id: todo.id })}
             >
               {todo.text}
             </span>
-            <button onClick={() => dispatch({ type: 'delete', id: todo.id })}>
+            `<button onClick={() =>` dispatch({ type: 'delete', id: todo.id })}>
               删除
             </button>
           </li>
@@ -1420,8 +1420,8 @@ function AppProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   
   return (
-    <StateContext.Provider value={state}>
-      <DispatchContext.Provider value={dispatch}>
+    `<StateContext.Provider value={state}>`
+      `<DispatchContext.Provider value={dispatch}>`
         {children}
       </DispatchContext.Provider>
     </StateContext.Provider>
@@ -1466,7 +1466,7 @@ const config = useMemo(() => ({
 
 // ��存 JSX（较少用）
 const renderedList = useMemo(() => {
-  return items.map(item => <Item key={item.id} item={item} />);
+  return items.map(item => `<Item key={item.id} item={item} />`);
 }, [items]);
 ```
 
@@ -1489,7 +1489,7 @@ function Parent() {
     console.log('clicked');
   }, []); // 无依赖，永远返回同一引用
   
-  return <MemoChild onClick={handleChildClick} />;
+  return `<MemoChild onClick={handleChildClick} />`;
 }
 ```
 
@@ -1579,17 +1579,17 @@ import React from 'react';
 // 类组件
 class ClassComponent extends React.Component {
   render() {
-    return <div>Class Component</div>;
+    return `<div>`Class Component</div>;
   }
 }
 
 // 函数组件
 function FunctionComponent() {
-  return <div>Function Component</div>;
+  return `<div>`Function Component</div>;
 }
 
 // 箭头函数组件
-const ArrowComponent = () => <div>Arrow Component</div>;
+const ArrowComponent = () => `<div>`Arrow Component</div>;
 
 // 判断函数
 function isClassComponent(component) {
@@ -1628,7 +1628,7 @@ const ref = useRef(initialValue);
 
 // 用途1：访问 DOM
 const inputRef = useRef(null);
-<input ref={inputRef} />
+`<input ref={inputRef} />`
 inputRef.current.focus();
 
 // 用途2：保存任意可变值
@@ -1646,14 +1646,14 @@ useEffect(() => {
 
 ```javascript
 // 访问 DOM
-<div ref={myRef}>Hello</div>
+`<div ref={myRef}>`Hello</div>
 
 // 访问类组件实例
-<ClassComponent ref={componentRef} />
+`<ClassComponent ref={componentRef} />`
 componentRef.current.someMethod();
 
 // 回调形式
-<div ref={el => { divEl = el; }} />
+`<div ref={el =>` { divEl = el; }} />
 
 // 函数组件不能直接使用 ref（会报错）
 // 需要配合 forwardRef
@@ -1666,7 +1666,7 @@ import { forwardRef } from 'react';
 
 // 函数组件接收 ref
 const FancyInput = forwardRef((props, ref) => {
-  return <input ref={ref} className="fancy-input" {...props} />;
+  return `<input ref={ref} className="fancy-input" {...props} />`;
 });
 
 // 父组件使用
@@ -1675,8 +1675,8 @@ function Parent() {
   
   return (
     <>
-      <FancyInput ref={inputRef} />
-      <button onClick={() => inputRef.current.focus()}>
+      `<FancyInput ref={inputRef} />`
+      `<button onClick={() =>` inputRef.current.focus()}>
         Focus
       </button>
     </>
@@ -1709,7 +1709,7 @@ const Child = forwardRef((props, ref) => {
     getValue: () => inputRef.current.value
   }));
   
-  return <input ref={inputRef} />;
+  return `<input ref={inputRef} />`;
 });
 
 // 父组件
@@ -1718,8 +1718,8 @@ function Parent() {
   
   return (
     <>
-      <Child ref={childRef} />
-      <button onClick={() => childRef.current.focus()}>
+      `<Child ref={childRef} />`
+      `<button onClick={() =>` childRef.current.focus()}>
         聚焦
       </button>
     </>
@@ -1795,7 +1795,7 @@ function UserProfile({ userId }) {
     fetchUser(userId).then(setUser);
   }, [userId]); // userId 变化时重新请求
   
-  return <div>{user?.name}</div>;
+  return `<div>`{user?.name}</div>;
 }
 ```
 
@@ -1940,8 +1940,8 @@ function App() {
   
   return (
     <>
-      <div>{Date.now()}</div>
-      <button onClick={update}>更新时间</button>
+      `<div>`{Date.now()}</div>
+      `<button onClick={update}>`更新时间</button>
     </>
   );
 }
@@ -1983,11 +1983,11 @@ function Counter() {
   
   // 即使 count 没变化，调用 update 也会重渲染
   return (
-    <div>
-      <p>Count: {count}</p>
-      <p>Random: {Math.random()}</p>
-      <button onClick={() => setCount(c => c + 1)}>增加</button>
-      <button onClick={update}>强制更新</button>
+    `<div>`
+      `<p>`Count: {count}</p>
+      `<p>`Random: {Math.random()}</p>
+      `<button onClick={() =>` setCount(c => c + 1)}>增加</button>
+      `<button onClick={update}>`强制更新</button>
     </div>
   );
 }
