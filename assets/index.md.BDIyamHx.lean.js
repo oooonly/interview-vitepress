@@ -1,0 +1,1 @@
+import{_ as s,o as i,c as e,ae as n}from"./chunks/framework.CZjBFbG6.js";const k=JSON.parse('{"title":"前端面试宝典","description":"","frontmatter":{},"headers":[],"relativePath":"index.md","filePath":"index.md"}'),t={name:"index.md"};function l(p,a,d,h,r,o){return i(),e("div",null,[...a[0]||(a[0]=[n("",7)])])}const m=s(t,[["render",l]]);export{k as __pageData,m as default};

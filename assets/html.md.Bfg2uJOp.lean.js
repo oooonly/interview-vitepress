@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as t,ae as l}from"./chunks/framework.CZjBFbG6.js";const g=JSON.parse('{"title":"HTML 面试题","description":"","frontmatter":{},"headers":[],"relativePath":"html.md","filePath":"html.md"}'),n={name:"html.md"};function e(h,i,r,o,d,p){return a(),t("div",null,[...i[0]||(i[0]=[l("",91)])])}const c=s(n,[["render",e]]);export{g as __pageData,c as default};
