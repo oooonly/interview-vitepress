@@ -1,1 +1,0 @@
-import{_ as i,o as a,c as n,ae as t}from"./chunks/framework.CZjBFbG6.js";const g=JSON.parse('{"title":"Vue 面试题","description":"","frontmatter":{},"headers":[],"relativePath":"vue.md","filePath":"vue.md"}'),l={name:"vue.md"};function h(p,s,k,e,r,E){return a(),n("div",null,[...s[0]||(s[0]=[t("",170)])])}const o=i(l,[["render",h]]);export{g as __pageData,o as default};

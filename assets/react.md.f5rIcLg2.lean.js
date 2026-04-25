@@ -1,0 +1,1 @@
+import{_ as i,o as a,c as n,ae as h}from"./chunks/framework.DITQIYta.js";const g=JSON.parse('{"title":"React 面试题","description":"","frontmatter":{},"headers":[],"relativePath":"react.md","filePath":"react.md"}'),t={name:"react.md"};function l(k,s,p,e,E,r){return a(),n("div",null,[...s[0]||(s[0]=[h("",353)])])}const y=i(t,[["render",l]]);export{g as __pageData,y as default};
