@@ -9,7 +9,7 @@ markdown: {
     // 禁用 HTML 标签解析
     md.set({ html: false })
     // 禁用 Vue 插值语法 {{ }}
-    md.core.ruler.disable('interpolate')
+    // md.core.ruler.disable('interpolate')
   }
 },
   themeConfig: {
