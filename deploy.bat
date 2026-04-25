@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 >nul
 echo ================================================
-echo   VitePress GitHub Pages 一键部署脚本
+echo   VitePress GitHub Pages 一键部署脚本 (quiz)
 echo ================================================
 echo.
 
@@ -16,7 +16,7 @@ if errorlevel 1 (
 )
 
 echo [2/6] 提交更改...
-git commit -m "fix: move backup files to docs dir and update deploy config"
+git commit -m "chore: rename repo to quiz"
 if errorlevel 1 (
     echo 没有需要提交的更改，继续...
 )
@@ -53,7 +53,7 @@ if exist .git rmdir /s /q .git
 git init
 git add -A
 git commit -m "deploy: update gh-pages"
-git push -f https://github.com/oooonly/interview-vitepress.git master:gh-pages
+git push -f https://github.com/oooonly/quiz.git master:gh-pages
 if errorlevel 1 (
     echo 部署失败！
     pause
@@ -65,7 +65,7 @@ cd /d "C:\Users\11848\Downloads\tmp\opencode\interview-vitepress"
 echo.
 echo ================================================
 echo   部署成功！
-echo   访问地址: https://oooonly.github.io/interview-vitepress/
+echo   访问地址: https://oooonly.github.io/quiz/
 echo   注意：部署后可能需要等待 1-2 分钟生效
 echo ================================================
 pause

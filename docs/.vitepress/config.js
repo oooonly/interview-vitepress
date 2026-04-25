@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-base: '/interview-vitepress/',
+base: '/quiz/',
 title: "前端面试宝典",
 description: "2025年前端面试题汇总",
 markdown: {
